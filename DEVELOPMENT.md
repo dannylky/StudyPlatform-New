@@ -1,7 +1,7 @@
 # Standalone Cantonese Vocabulary Practice - Development Notes
 
 Last updated: 2026-10-26  
-Version: v3.1.0  
+Version: v3.2.0  
 Deliverable: [`index.html`](index.html)
 
 ## 1. Overview
@@ -14,11 +14,13 @@ The new version keeps the non-AI learning workflow and removes the AI-dependent 
 
 v3.1.0 hardens the existing workflow: speech callbacks use current language settings, delayed restarts cannot override Stop, HanziWriter responds to viewport changes, CDN failures produce a visible fallback, and cards, reading text, sliders, and dialogs have keyboard and screen-reader support.
 
+v3.2.0 adds Tony's Chinese `Dictation 4 - Unit 15 & 16` chapter with 14 vocabulary records. The chapter has no reading paragraph yet, so its reading button shows the no-content toast.
+
 ### 1.1 Deliverables
 
 | File | Description | Size |
 | --- | --- | --- |
-| [`index.html`](index.html) | Standalone application with embedded data and app code | 167,335 bytes |
+| [`index.html`](index.html) | Standalone application with embedded data and app code | 169,693 bytes |
 | [`react.txt`](react.txt) | Original React source, v2.12.0, including AI code | 163,166 bytes |
 | `DEVELOPMENT.md` | This development and maintenance document | see file properties |
 | [`backup.ps1`](backup.ps1) | Timestamped, versioned snapshot helper | 1,541 bytes |
@@ -27,7 +29,7 @@ v3.1.0 hardens the existing workflow: speech callbacks use current language sett
 SHA-256 of the final `index.html` as built on 2026-10-26:
 
 ```text
-87314A18D57AECC057B5D96124E01363FF5AA63E745E67DF57834FB537B42572
+CC9FDA476CF8D60503778923AF81591C1B541866961B2E9362C8061171405175
 ```
 
 The checksum will change if the HTML or embedded data is edited. Recalculate it after any edit.
@@ -165,18 +167,19 @@ All original learning data is preserved in the final HTML.
 | Profile | Chapters |
 | --- | --- |
 | User | None |
-| Tony | 5 |
+| Tony | 6 |
 | Sofia | 5 |
 
 ### 4.2 Chapters
 
-There are 10 chapter records and 223 vocabulary records in total.
+There are 11 chapter records and 237 vocabulary records in total.
 
 | Profile | Subject | Chapter ID | Title | Content | Vocabulary records |
 | --- | --- | --- | --- | --- | --- |
 | Tony | Chinese | `tony_zh_exam_1` | Exam 1 (12 Nov) | None | 30 |
 | Tony | Chinese | `tony_zh_dictation_1_unit_1_2` | Dictation 1 - Unit 1 & 2 | Present | 16 |
 | Tony | Chinese | `tony_zh_dictation_3_ch11` | Dictation 3 - Chapter 11 | Present | 17 |
+| Tony | Chinese | `tony_zh_dictation_4_unit_15_16` | Dictation 4 - Unit 15 & 16 | None | 14 |
 | Tony | English | `tony_en_dictation_1_unit_1_2` | Dictation 1 - Unit 1 & 2 | Present | 15 |
 | Tony | English | `tony_en_dictation_2_unit_3` | Dictation 2 - Unit 3 (27 Oct) | None | 26 |
 | Sofia | English | `sofia_en_dictation_1_unit_1` | Dictation 1 - Unit 1 | Present | 20 |
@@ -188,7 +191,7 @@ There are 10 chapter records and 223 vocabulary records in total.
 Notes:
 
 - `sofia_zh_dictation_1_unit_1_2` contains a placeholder instruction rather than the actual dictation paragraph.
-- Four chapters have no reading text. The reading button shows a toast instead of silently doing nothing.
+- Five chapters have no reading text. The reading button shows a toast instead of silently doing nothing. `tony_zh_dictation_4_unit_15_16` is the latest of these because only the vocabulary list was provided.
 - Vocabulary counts include both single words and full-sentence entries.
 
 ### 4.3 Vocabulary Record Shape
@@ -215,7 +218,7 @@ Notes:
 | --- | --- |
 | `UI_TEXT` | UI labels in Cantonese, Simplified Chinese, and English |
 | `PROFILES` | User, Tony, Sofia |
-| `CHANGELOG_DATA` | In-app changelog, including the v3.1.0 entry and earlier history |
+| `CHANGELOG_DATA` | In-app changelog, including the v3.2.0 entry and earlier history |
 | `HOMOPHONE_DB` | Homophone hints for reading-mode word clicks |
 | `CHAPTERS` | Profile, subject, title, and reading content |
 | `VOCABULARY_DB` | Vocabulary records keyed by chapter ID |
@@ -353,14 +356,14 @@ Starting practice requires the speech-synthesis API. This is deliberate: both pr
 ### 5.8 Changelog and Data Backup
 
 - Changelog modal with month tabs.
-- The v3.1.0 entry documents the speech, resilience, and accessibility changes. The v3.0.0 entry documents the standalone conversion and AI removal.
+- The v3.2.0 entry documents Tony's new Dictation 4 chapter. Earlier entries cover the v3.1.0 speech/resilience/accessibility work and the v3.0.0 standalone conversion.
 - The download button exports the current data as JavaScript:
   - profiles;
   - changelog;
   - vocabulary database;
   - chapters;
   - practice database.
-- The download filename is `Cantonese_Vocab_App_Data_v3.1.0.js`.
+- The download filename is `Cantonese_Vocab_App_Data_v3.2.0.js`.
 - This is a data backup, not a copy of the full HTML application.
 
 ### 5.9 Visual, Interaction, and Accessibility Details
@@ -532,31 +535,31 @@ Line numbers refer to the final `index.html` at the time of writing. They may sh
 | `UI_TEXT` | 207 |
 | `PROFILES` | 213 |
 | `CHANGELOG_DATA` | 219 |
-| `HOMOPHONE_DB` | 236 |
-| `CHAPTERS` | 240 |
-| `VOCABULARY_DB` | 258 |
-| `PRACTICE_DB` | 504 |
-| `BlankInput` | 510 |
-| `SectionSeparator` | 540 |
-| `getSeparatorConfig` | 550 |
-| `CharacterBox` | 607 |
-| `WordCard` | 704 |
-| `App` | 773 |
-| `handleDownloadSource` | 894 |
-| `handlePronounce` | 994 |
-| `startPractice` | 1037 |
-| `stopPractice` | 1061 |
-| `stopChapterReading` | 1139 |
-| `playChunk` | 1153 |
-| `readSingleSentence` | 1174 |
-| `readSingleWord` | 1187 |
-| `handleSpeedChange` | 1205 |
-| `handlePauseToggle` | 1224 |
-| `handleReadChapter` | 1229 |
-| Practice setup modal | 1792 |
-| Changelog modal | 1881 |
-| `AppErrorBoundary` and `Root` | 1929 |
-| React root render | 1972 |
+| `HOMOPHONE_DB` | 237 |
+| `CHAPTERS` | 241 |
+| `VOCABULARY_DB` | 260 |
+| `PRACTICE_DB` | 522 |
+| `BlankInput` | 528 |
+| `SectionSeparator` | 558 |
+| `getSeparatorConfig` | 568 |
+| `CharacterBox` | 628 |
+| `WordCard` | 725 |
+| `App` | 794 |
+| `handleDownloadSource` | 915 |
+| `handlePronounce` | 1015 |
+| `startPractice` | 1058 |
+| `stopPractice` | 1082 |
+| `stopChapterReading` | 1160 |
+| `playChunk` | 1174 |
+| `readSingleSentence` | 1195 |
+| `readSingleWord` | 1208 |
+| `handleSpeedChange` | 1226 |
+| `handlePauseToggle` | 1245 |
+| `handleReadChapter` | 1250 |
+| Practice setup modal | 1813 |
+| Changelog modal | 1902 |
+| `AppErrorBoundary` and `Root` | 1950 |
+| React root render | 1993 |
 
 ## 9. Build and Validation Process
 
@@ -592,9 +595,13 @@ v3.1.0 steps:
 25. Add the v3.1.0 changelog entry and download filename bump.
 26. Re-run the automated browser checks and update this document.
 
+v3.2.0 content step:
+
+27. Add Tony's `Dictation 4 - Unit 15 & 16` chapter, its 14 vocabulary records, the `甲、詞語` separator, the changelog entry, and the version/checksum updates. Reading content remains empty because only the vocabulary list was provided.
+
 ### 9.2 JSX Validation
 
-The app script is still compiled in the browser by Babel Standalone with the `react` preset. The v3.1.0 script mounts successfully in Chrome, which confirms the JSX and class/function syntax compile. The earlier standalone transform counts no longer apply because the script changed.
+The app script is still compiled in the browser by Babel Standalone with the `react` preset. The v3.2.0 script mounts successfully in Chrome, which confirms the JSX and class/function syntax compile. The earlier standalone transform counts no longer apply because the script changed.
 
 ### 9.3 Browser Validation
 
@@ -613,6 +620,7 @@ Final result:
 - Modal Escape-to-close, focus restore, and Tab wrapping work.
 - Blocking React/Babel shows the boot fallback with the missing CDN names and `__appMounted` remains false.
 - A temporary copy with two `PRACTICE_DB` tabs renders both tabs, selects an answer in Tab A, and switches to Tab B without errors.
+- Tony's `Dictation 4 - Unit 15 & 16` chapter renders 14 cards, the `甲、詞語 (二上第二冊 第15、16課)` separator, a no-content reading toast, and practice range options `1` to `14`.
 
 ### 9.4 Test Matrix
 
@@ -630,8 +638,9 @@ Final result:
 | Standard practice | Countdown, active card, floating progress bar, stop | Pass |
 | Selected-card practice | `已選取 1 個單字`, progress `1 / 1` | Pass |
 | Dictation practice | All cards hidden, countdown, stop | Pass |
+| Tony Dictation 4 chapter | 14 cards, separator, empty-reading toast, practice range 1-14 | Pass |
 | Card click | Speech path runs without exceptions | Pass |
-| Changelog | Modal opens, v3.1.0 entry and download button present | Pass |
+| Changelog | Modal opens, v3.2.0 entry and download button present | Pass |
 | Chapter-practice button | Disabled because `PRACTICE_DB` is empty | Pass |
 | Console errors during normal load | None | Pass |
 | Language switch | `document.lang`, title, and slider label update | Pass |
@@ -724,7 +733,7 @@ Update all of the following:
 
 - `APP_VERSION`;
 - the initial `<title>` in the HTML head;
-- the changelog list (add a new entry; keep v3.0.0 and v3.1.0 history);
+- the changelog list (add a new entry; keep v3.0.0, v3.1.0, and v3.2.0 history);
 - the download filename if the version is included there;
 - `DEVELOPMENT.md` header, checksum, size, and test matrix;
 - the backup folder version/label when snapshotting.
@@ -764,7 +773,7 @@ Direct `file://` opening also works.
 Run the snapshot helper before each change set:
 
 ```powershell
-.\backup.ps1 -Version v3.1.0 -Label pre-edit
+.\backup.ps1 -Version v3.2.0 -Label pre-edit
 ```
 
 The helper creates `backups/<version>_<timestamp>[_label]/` and copies `index.html`, `DEVELOPMENT.md`, `react.txt`, and `backup.ps1`. It writes `MANIFEST.json` with the version, label, creation time, byte sizes, and SHA-256 for each file. Snapshots are immutable; use a new version or label instead of overwriting an existing folder.
@@ -801,18 +810,22 @@ A suggested workflow is:
 - Test and tune speech behavior on mobile Safari and Android Chrome.
 - Consider a real build pipeline if the app grows beyond a single-file distribution.
 
-## Appendix A: v3.1.0 Changelog Entry
+## Appendix A: v3.2.0 Changelog Entry
+
+```text
+v3.2.0 | 2026-10-26 17:22
+- 新增：為 Tony 加入中文科「第四次默書」範圍 (Dictation 4 - Unit 15 & 16)。
+- 內容：收錄二上第二冊第15、16課共14個詞語，附粵拼與筆順。
+```
+
+Previous releases:
 
 ```text
 v3.1.0 | 2026-10-26 16:41
 - 修正：調整語速後改用最新語言設定朗讀，停止朗讀不會被延遲啟動覆蓋。
 - 改善：HanziWriter 尺寸更新與清理、CDN 載入失敗提示及應用程式錯誤畫面。
 - 改善：鍵盤操作、螢幕閱讀器標籤、對話框焦點管理及減少動態效果。
-```
 
-Previous release:
-
-```text
 v3.0.0 | 2026-10-25 10:00
 - 轉換：建立無需 API 金鑰的單一 HTML 版本，所有詞彙資料內嵌。
 - 移除：AI 詞彙語境、隨機故事、隨堂測驗與自動表情符號功能。
@@ -824,13 +837,14 @@ v3.0.0 | 2026-10-25 10:00
 
 ```text
 File:       C:\Work\Projects\OpenCode\Study New\index.html
-Version:    v3.1.0
-Size:       167,335 bytes
-SHA-256:    87314A18D57AECC057B5D96124E01363FF5AA63E745E67DF57834FB537B42572
+Version:    v3.2.0
+Size:       169,693 bytes
+SHA-256:    CC9FDA476CF8D60503778923AF81591C1B541866961B2E9362C8061171405175
 JSX check:  Pass (mounts in Chrome with Babel Standalone, react preset)
 Browser:    Chrome headless via CDP, HTTP and file://
 JS errors:  None during normal load
 Warnings:   Tailwind Play CDN production warning; Babel in-browser transformer warning
-Tests:      30 cards, 10 chapters, 223 vocabulary records; resize, dialogs, keyboard,
-            speech-language/rate, stop-race, practice start/stop, CDN fallback
+Tests:      30 initial cards, 11 chapters, 237 vocabulary records; Dictation 4 renders
+            14 cards; resize, dialogs, keyboard, speech-language/rate, stop-race,
+            practice start/stop, CDN fallback
 ```

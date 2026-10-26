@@ -1,0 +1,28 @@
+{
+    "version":  "v3.2.0",
+    "label":  "release",
+    "created":  "2026-10-26T17:27:21.8007304+08:00",
+    "folder":  "v3.2.0_2026-10-26_172721_release",
+    "files":  [
+                  {
+                      "name":  "index.html",
+                      "bytes":  169693,
+                      "sha256":  "CC9FDA476CF8D60503778923AF81591C1B541866961B2E9362C8061171405175"
+                  },
+                  {
+                      "name":  "DEVELOPMENT.md",
+                      "bytes":  42639,
+                      "sha256":  "A986D70B762AC1C8C9EB14E1ED29E5CA9144FA7F517E5A45D61B502E69D56EB7"
+                  },
+                  {
+                      "name":  "react.txt",
+                      "bytes":  163166,
+                      "sha256":  "C8AF496378706D0DB5F66232B4A23CD4B378BA025FC3BBC746D4257FF7F92CD1"
+                  },
+                  {
+                      "name":  "backup.ps1",
+                      "bytes":  1541,
+                      "sha256":  "04E3FB4B9156D61D44104FB6EDE651F74B17E1C5E8CCD5002928257FB393B4A0"
+                  }
+              ]
+}

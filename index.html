@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Cantonese vocabulary practice with flashcards, stroke order, browser speech, chapter reading and dictation. No API keys required." />
   <meta name="theme-color" content="#6366f1" />
-  <title>粵語詞彙練習 (v3.1.0)</title>
+  <title>粵語詞彙練習 (v3.2.0)</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
   <script>
     window.__cdnErrors = [];
@@ -105,7 +105,7 @@
 const { useState, useEffect, useRef, useCallback, memo } = React;
 const { Volume2, Sparkles, BookOpen, X, HelpCircle, ChevronDown, Square, Pause, Play, AlertCircle, User, History, Timer, StopCircle, Minus, Plus, CheckCircle, Languages, PenTool, Download } = lucideReact;
 
-const APP_VERSION = "v3.1.0"; 
+const APP_VERSION = "v3.2.0"; 
 
 // ==========================================
 // --- 共用模組與全域方法區塊 ---
@@ -217,6 +217,7 @@ const PROFILES = [
 ];
 
 const CHANGELOG_DATA = [
+  { version: 'v3.2.0', date: '2026-10-26', time: '17:22', changes: ['新增：為 Tony 加入中文科「第四次默書」範圍 (Dictation 4 - Unit 15 & 16)。', '內容：收錄二上第二冊第15、16課共14個詞語，附粵拼與筆順。'] },
   { version: 'v3.1.0', date: '2026-10-26', time: '16:41', changes: ['修正：調整語速後改用最新語言設定朗讀，停止朗讀不會被延遲啟動覆蓋。', '改善：HanziWriter 尺寸更新與清理、CDN 載入失敗提示及應用程式錯誤畫面。', '改善：鍵盤操作、螢幕閱讀器標籤、對話框焦點管理及減少動態效果。'] },
   { version: 'v3.0.0', date: '2026-10-25', time: '10:00', changes: ['轉換：建立無需 API 金鑰的單一 HTML 版本，所有詞彙資料內嵌。', '移除：AI 詞彙語境、隨機故事、隨堂測驗與自動表情符號功能。', '保留：單字卡、筆順動畫、語音朗讀、章節朗讀及單字抽查。', '修正：英文句子分段、朗讀詞語識別，以及沒有課文內容時的提示。'] },
   { version: 'v2.12.0', date: '2026-10-24', time: '21:54', changes: ['新增：為 Sofia 加入了中文科「Exam 1 (12 Nov)」考試範圍。', '內容：收錄了單元一、單元二、單元四共計 41 個詞彙，並配置了視覺分隔線。'] },
@@ -243,6 +244,7 @@ const CHAPTERS = {
     { id: 'tony_zh_exam_1', title: 'Exam 1 (12 Nov)', subject: 'chinese', content: '' },
     { id: 'tony_zh_dictation_1_unit_1_2', title: 'Dictation 1 - Unit 1 & 2', subject: 'chinese', content: '五歲的欣欣，會寫字、畫畫，還會唱好聽的兒歌。\n\n六歲的欣欣，開始換牙，還整天拉着爸爸和媽媽，問這又問那。' },
     { id: 'tony_zh_dictation_3_ch11', title: 'Dictation 3 - Chapter 11', subject: 'chinese', content: '我認為運動除了可以改善體能，增強抵抗力外，還可以舒展身心，消除壓力。\n\n我會堅持認真做運動，將來做個籃球運動員！' },
+    { id: 'tony_zh_dictation_4_unit_15_16', title: 'Dictation 4 - Unit 15 & 16', subject: 'chinese', content: '' },
     { id: 'tony_en_dictation_1_unit_1_2', title: 'Dictation 1 - Unit 1 & 2', subject: 'english', content: "We must sit still and pay attention.\n\nWe mustn't pick the flowers in the garden.\n\nWe have an assembly in the hall.\n\nYou must wait for your turn.\n\nYou must line up." },
     { id: 'tony_en_dictation_2_unit_3', title: 'Dictation 2 - Unit 3 (27 Oct)', subject: 'english', content: "" }
   ],
@@ -324,6 +326,22 @@ const VOCABULARY_DB = {
     { word: '我認為運動除了可以改善體能，增強抵抗力外，還可以舒展身心，消除壓力。', translation: 'I think sports can not only improve physical fitness and strengthen immunity, but also relax the body and mind, and relieve stress.', chars: [] },
     { word: '我會堅持認真做運動，將來做個籃球運動員！', translation: 'I will persist in doing sports seriously, and become a basketball player in the future!', chars: [] },
     { word: '「運動項目」(加分制，限時3分鐘)', translation: '[Sports Items] (Bonus marks, 3 mins limit)', chars: [] }
+  ],
+  'tony_zh_dictation_4_unit_15_16': [
+    { word: '學問', translation: 'learning / knowledge', chars: [{ c: '學', p: 'hok6' }, { c: '問', p: 'man6' }] },
+    { word: '繼續', translation: 'continue', chars: [{ c: '繼', p: 'gai3' }, { c: '續', p: 'zuk6' }] },
+    { word: '勸告', translation: 'advice / admonition', chars: [{ c: '勸', p: 'hyun3' }, { c: '告', p: 'gou3' }] },
+    { word: '慚愧', translation: 'ashamed', chars: [{ c: '慚', p: 'caam4' }, { c: '愧', p: 'kwai5' }] },
+    { word: '積累', translation: 'accumulate', chars: [{ c: '積', p: 'zik1' }, { c: '累', p: 'leoi5' }] },
+    { word: '從此', translation: 'from then on', chars: [{ c: '從', p: 'cung4' }, { c: '此', p: 'ci2' }] },
+    { word: '已經', translation: 'already', chars: [{ c: '已', p: 'ji5' }, { c: '經', p: 'ging1' }] },
+    { word: '半途而廢', translation: 'give up halfway', chars: [{ c: '半', p: 'bun3' }, { c: '途', p: 'tou4' }, { c: '而', p: 'ji4' }, { c: '廢', p: 'fai3' }] },
+    { word: '終於', translation: 'finally / eventually', chars: [{ c: '終', p: 'zung1' }, { c: '於', p: 'jyu1' }] },
+    { word: '解決', translation: 'solve / resolve', chars: [{ c: '解', p: 'gaai2' }, { c: '決', p: 'kyut3' }] },
+    { word: '趕快', translation: 'hurry up / quickly', chars: [{ c: '趕', p: 'gon2' }, { c: '快', p: 'faai3' }] },
+    { word: '亡羊補牢', translation: 'mend the fold after the sheep is lost', chars: [{ c: '亡', p: 'mong4' }, { c: '羊', p: 'joeng4' }, { c: '補', p: 'bou2' }, { c: '牢', p: 'lou4' }] },
+    { word: '鄰居', translation: 'neighbour', chars: [{ c: '鄰', p: 'leon4' }, { c: '居', p: 'geoi1' }] },
+    { word: '決心', translation: 'determination / resolve', chars: [{ c: '決', p: 'kyut3' }, { c: '心', p: 'sam1' }] }
   ],
   'tony_en_dictation_1_unit_1_2': [
     { word: 'an art room', translation: '一間美術室', chars: [] },
@@ -573,6 +591,9 @@ const getSeparatorConfig = (chapterId, index) => {
       if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '甲、詞語 (二上第二冊 第11課)', isFirst: true };
       if (index === 14) return { icon: Sparkles, color: 'text-amber-500', text: '乙、段落', isFirst: false };
       if (index === 16) return { icon: Sparkles, color: 'text-pink-500', text: '丙、主題詞默寫', isFirst: false };
+  }
+  if (chapterId === 'tony_zh_dictation_4_unit_15_16') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '甲、詞語 (二上第二冊 第15、16課)', isFirst: true };
   }
   if (chapterId === 'tony_en_dictation_2_unit_3') {
       if (index === 0) return { icon: BookOpen, color: 'text-indigo-500', text: 'A. Vocabulary 50%', isFirst: true };
