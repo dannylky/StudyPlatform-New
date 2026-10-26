@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cantonese vocabulary practice with flashcards, stroke order, browser speech, chapter reading and dictation. No API keys required." />
+  <meta name="theme-color" content="#6366f1" />
+  <title>粵語詞彙練習 (v3.1.0)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+  <script>
+    window.__cdnErrors = [];
+    window.__cdnFail = function (name) {
+      if (window.__cdnErrors.indexOf(name) === -1) window.__cdnErrors.push(name);
+    };
+    window.__appMounted = false;
+    window.__bootShowError = function () {
+      if (window.__appMounted) return;
+      var box = document.getElementById('boot-fallback');
+      if (!box) return;
+      var message = document.getElementById('boot-message');
+      var detail = document.getElementById('boot-detail');
+      var reload = document.getElementById('boot-reload');
+      var spinner = document.getElementById('boot-spinner');
+      if (message) message.textContent = '載入失敗，請檢查網絡連線後重試。 / Failed to load. Check your connection and try again.';
+      if (detail) {
+        var reasons = [];
+        if (window.__cdnErrors && window.__cdnErrors.length) reasons.push('CDN: ' + window.__cdnErrors.join(', '));
+        if (window.__lastError) reasons.push(window.__lastError);
+        detail.textContent = reasons.join(' | ');
+        detail.style.display = reasons.length ? 'block' : 'none';
+      }
+      if (reload) reload.style.display = 'inline-block';
+      if (spinner) spinner.style.display = 'none';
+      box.setAttribute('data-state', 'error');
+    };
+    window.addEventListener('error', function (event) {
+      if (window.__appMounted) return;
+      var target = event.target;
+      if (target && target.tagName === 'SCRIPT') {
+        var name = (target.src || 'script').split('/').pop().split('?')[0];
+        window.__cdnFail(name || 'script');
+      } else if (event.message) {
+        window.__lastError = event.message;
+      }
+      setTimeout(window.__bootShowError, 1500);
+    }, true);
+    setTimeout(window.__bootShowError, 15000);
+  </script>
+  <script src="https://cdn.tailwindcss.com" onerror="window.__cdnFail('Tailwind')"></script>
+  <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" onerror="window.__cdnFail('React')"></script>
+  <script>window.react = window.React;</script>
+  <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" onerror="window.__cdnFail('ReactDOM')"></script>
+  <script crossorigin src="https://unpkg.com/lucide-react@0.400.0/dist/umd/lucide-react.js" onerror="window.__cdnFail('lucide-react')"></script>
+  <script>window.lucideReact = window.LucideReact;</script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone@7.25.0/babel.min.js" onerror="window.__cdnFail('Babel')"></script>
+  <style>
+    @keyframes enter {
+      from {
+        opacity: var(--tw-enter-opacity, 1);
+        transform: translate3d(var(--tw-enter-translate-x, 0), var(--tw-enter-translate-y, 0), 0) scale3d(var(--tw-enter-scale, 1), var(--tw-enter-scale, 1), 1);
+      }
+    }
+    .animate-in { animation: enter 200ms ease-out; }
+    .fade-in { --tw-enter-opacity: 0; }
+    .zoom-in-95 { --tw-enter-scale: .95; }
+    .slide-in-from-top-10 { --tw-enter-translate-y: -2.5rem; }
+    .slide-in-from-top-2 { --tw-enter-translate-y: -.5rem; }
+    .slide-in-from-bottom-2 { --tw-enter-translate-y: .5rem; }
+    .slide-in-from-bottom-4 { --tw-enter-translate-y: 1rem; }
+    .slide-in-from-bottom-10 { --tw-enter-translate-y: 2.5rem; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    .custom-scrollbar { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+    :focus-visible { outline: 3px solid #6366f1 !important; outline-offset: 2px !important; }
+    @keyframes boot-spin { to { transform: rotate(360deg); } }
+    #boot-fallback { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 24px; background: #f8fafc; color: #334155; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    #boot-fallback .boot-card { width: min(560px, 100%); padding: 32px; border: 1px solid #e2e8f0; border-radius: 24px; background: #fff; box-shadow: 0 24px 60px rgba(15, 23, 42, .12); text-align: center; }
+    #boot-fallback h1 { margin: 0 0 12px; font-size: 24px; color: #1e293b; }
+    #boot-fallback p { margin: 8px 0; line-height: 1.6; }
+    #boot-spinner { width: 36px; height: 36px; margin: 0 auto 20px; border: 4px solid #e2e8f0; border-top-color: #6366f1; border-radius: 50%; animation: boot-spin 1s linear infinite; }
+    #boot-reload { display: none; margin-top: 16px; padding: 10px 20px; border: 0; border-radius: 9999px; background: #6366f1; color: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+    #boot-detail { display: none; font-size: 13px; color: #64748b; word-break: break-word; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+      #boot-spinner { animation: none; border-top-color: #6366f1; }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="boot-fallback" role="alert" aria-live="polite">
+    <div class="boot-card">
+      <div id="boot-spinner"></div>
+      <h1>粵語詞彙練習</h1>
+      <p id="boot-message">正在載入應用程式… / Loading the app…</p>
+      <p id="boot-detail"></p>
+      <button id="boot-reload" type="button" onclick="window.location.reload()">重新載入 / Reload</button>
+    </div>
+  </div>
+  <noscript>此應用需要啟用 JavaScript。</noscript>
+  <script type="text/babel" data-presets="react">
+const { useState, useEffect, useRef, useCallback, memo } = React;
+const { Volume2, Sparkles, BookOpen, X, HelpCircle, ChevronDown, Square, Pause, Play, AlertCircle, User, History, Timer, StopCircle, Minus, Plus, CheckCircle, Languages, PenTool, Download } = lucideReact;
+
+const APP_VERSION = "v3.1.0"; 
+
+// ==========================================
+// --- 共用模組與全域方法區塊 ---
+// ==========================================
+
+// HanziWriter 動態加載器
+let scriptPromise = null;
+const loadHanziWriter = () => {
+  if (window.HanziWriter) return Promise.resolve(window.HanziWriter);
+  if (scriptPromise) return scriptPromise;
+  scriptPromise = new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://cdn.jsdelivr.net/npm/hanzi-writer@3.5/dist/hanzi-writer.min.js';
+    script.onload = () => {
+      if (window.HanziWriter) {
+        resolve(window.HanziWriter);
+      } else {
+        scriptPromise = null;
+        script.remove();
+        reject(new Error('HanziWriter loaded without a global'));
+      }
+    };
+    script.onerror = () => {
+      scriptPromise = null;
+      script.remove();
+      reject(new Error('HanziWriter failed to load'));
+    };
+    document.head.appendChild(script);
+  });
+  return scriptPromise;
+};
+
+const prefersReducedMotion = () => typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isActivationKey = (event) => event.key === 'Enter' || event.key === ' ';
+
+// 中文斷詞工具
+const segmentChineseText = (text) => {
+  try {
+    if (window.Intl && window.Intl.Segmenter) {
+      const segmenter = new Intl.Segmenter('zh-Hant', { granularity: 'word' });
+      return Array.from(segmenter.segment(text)).map(s => s.segment);
+    }
+  } catch(e) {}
+  return text.split(/(?=[\u4e00-\u9fa5])/);
+};
+
+// 語音引擎封裝（瀏覽器內建語音，無需 API）
+const getVoiceUtterance = (text, rate, forceEnglish = false, appLanguage = 'yue') => {
+  if (!('speechSynthesis' in window)) return null;
+  const utterance = new SpeechSynthesisUtterance(text);
+  const voices = window.speechSynthesis.getVoices();
+  const normalizedLang = (v) => String(v.lang || '').toLowerCase().replace('_', '-');
+  const preferFemale = (pool) => {
+    if (!pool || pool.length === 0) return null;
+    const f = pool.find(v => v.name.toLowerCase().match(/(female|samantha|zira|victoria|karen|sin-ji|ting-ting|yaoyao|huihui|tracy|xiaoxiao|mei-jia|meijia)/));
+    if (f) return f;
+    const nf = pool.filter(v => !v.name.toLowerCase().match(/(male|boy|david|alex|daniel)/));
+    return nf.length > 0 ? nf[0] : pool[0];
+  };
+  const isZh = (v) => normalizedLang(v).startsWith('zh') || /cmn|chinese|mandarin|粵|粤|普通話|普通话|國語/i.test(v.lang + ' ' + v.name);
+  const isYue = (v) => /yue|zh-hk|cantonese|粵|粤|廣東|广东/i.test(v.lang + ' ' + v.name) && !normalizedLang(v).startsWith('en');
+  const isMandarin = (v) => /zh-cn|zh-tw|zh-sg|cmn|mandarin|chinese|普通話|普通话|國語/i.test(v.lang + ' ' + v.name) && !normalizedLang(v).startsWith('en');
+
+  let selectedVoice = null;
+  let selectedLang = 'zh-HK';
+
+  if (forceEnglish) {
+    selectedVoice = preferFemale(voices.filter(v => normalizedLang(v).startsWith('en')));
+    selectedLang = selectedVoice?.lang || 'en-US';
+  } else {
+    const targetLang = appLanguage === 'zh-CN' ? 'zh-CN' : appLanguage === 'zh-TW' ? 'zh-TW' : 'zh-HK';
+    let pool = [];
+    if (appLanguage === 'yue') {
+      pool = voices.filter(isYue);
+      if (pool.length === 0) pool = voices.filter(isZh);
+    } else if (appLanguage === 'zh-CN') {
+      pool = voices.filter(v => normalizedLang(v).startsWith('zh-cn') || /mandarin|普通話|普通话/i.test(v.lang + ' ' + v.name));
+      if (pool.length === 0) pool = voices.filter(isMandarin);
+    } else {
+      pool = voices.filter(v => normalizedLang(v).startsWith('zh-tw') || /國語|普通話|普通话|mandarin/i.test(v.lang + ' ' + v.name));
+      if (pool.length === 0) pool = voices.filter(isMandarin);
+    }
+    if (pool.length === 0) pool = voices.filter(isZh);
+    selectedVoice = preferFemale(pool);
+    selectedLang = selectedVoice?.lang || targetLang;
+  }
+
+  if (selectedVoice) utterance.voice = selectedVoice;
+  utterance.lang = selectedLang;
+  utterance.rate = rate;
+  return utterance;
+};
+
+// ==========================================
+// --- 系統資料庫區塊 ---
+// ==========================================
+
+const UI_TEXT = {
+  'yue': { title: '粵語詞彙練習', subtitle: '點擊卡片聆聽發音並查看筆順，配合課文朗讀與單字抽查練習，無需 API 金鑰！', readChapter: '朗讀課文內容', stopReading: '停止朗讀', pauseReading: '暫停朗讀', resumeReading: '繼續朗讀', speedLabel: '語速', wordMode: '讀單字', sentenceMode: '讀單句', practiceMode: '單字抽查', practiceSetup: '設定抽查範圍', practiceRange: '選擇抽查的單字卡範圍：', from: '從第', to: '至第', cardUnit: '張', startPractice: '開始練習', stopPractice: '停止練習', practiceTypeLabel: '練習模式：', practiceModeStandard: '閃卡抽查', practiceModeDictation: '默書模式', orderLabel: '播放順序：', orderRandom: '隨機', orderSequence: '依序', waitTimeLabel: '等候 (秒)：', repeatLabel: '朗讀次數：', timesUnit: '次', roundsLabel: '練習回合：', roundsUnit: '回', selectedCardsLabel: '已選取 {count} 個單字', clearSelection: '清除選取', chapterPractice: '章節練習', showSuggestedAnswers: '顯示建議答案', hideSuggestedAnswers: '隱藏建議答案', clearAnswers: '清除作答', close: '關閉', selectChapter: '選擇章節', selectCard: '選取第 {n} 張單字卡', deselectCard: '取消選取第 {n} 張單字卡', readWord: '朗讀詞語', readSentence: '朗讀句子', hiddenCard: '隱藏單字卡', homophones: '同音字', readAloud: '朗讀', showHint: '提示答案', seconds: '秒', noSpeech: '此瀏覽器不支援語音功能。', noContent: '此章節暫未提供課文內容。', downloadSuccess: '已下載系統資料庫備份！', emptyVocabulary: '目前此章節尚未加入詞彙內容，您可以隨時在資料庫中進行擴充。', answerPlaceholder: '請輸入你的答案...', sentencePlaceholder: '請輸入你的造句...', suggestedAnswer: '建議答案', correct: '{t.correct}', incorrect: '{t.incorrect}', profileLabel: '使用者', subjectLabel: '科目', languageLabel: '語言', changelog: '更新日誌', mainNav: '主要導覽', downloadData: '下載資料庫' },
+  'zh-CN': { title: '词汇练习', subtitle: '点击卡片聆听发音并查看笔顺，配合课文朗读与单词练习，无需 API 密钥！', readChapter: '朗读课文内容', stopReading: '停止朗读', pauseReading: '暂停朗读', resumeReading: '继续朗读', speedLabel: '语速', wordMode: '读单字', sentenceMode: '读单句', practiceMode: '单词练习', practiceSetup: '设定练习范围', practiceRange: '选择练习的单词卡范围：', from: '从第', to: '至第', cardUnit: '张', startPractice: '开始练习', stopPractice: '停止练习', practiceTypeLabel: '练习模式：', practiceModeStandard: '闪卡抽查', practiceModeDictation: '默写模式', orderLabel: '播放顺序：', orderRandom: '随机', orderSequence: '依序', waitTimeLabel: '等候 (秒)：', repeatLabel: '朗读次数：', timesUnit: '次', roundsLabel: '练习回合：', roundsUnit: '回', selectedCardsLabel: '已选取 {count} 个单词', clearSelection: '清除选取', chapterPractice: '章节练习', showSuggestedAnswers: '显示建议答案', hideSuggestedAnswers: '隐藏建议答案', clearAnswers: '清除作答', close: '关闭', selectChapter: '选择章节', selectCard: '选取第 {n} 张单词卡', deselectCard: '取消选取第 {n} 张单词卡', readWord: '朗读词语', readSentence: '朗读句子', hiddenCard: '隐藏单词卡', homophones: '同音字', readAloud: '朗读', showHint: '提示答案', seconds: '秒', noSpeech: '此浏览器不支持语音功能。', noContent: '此章节暂未提供课文内容。', downloadSuccess: '已下载系统数据库备份！', emptyVocabulary: '目前此章节尚未加入词汇内容，您可以随时在数据库中进行扩充。', answerPlaceholder: '请输入你的答案...', sentencePlaceholder: '请输入你的造句...', suggestedAnswer: '建议答案', correct: '答对了！非常棒！', incorrect: '不对喔，请再试一次！', profileLabel: '用户', subjectLabel: '科目', languageLabel: '语言', changelog: '更新日志', mainNav: '主导航', downloadData: '下载数据库' },
+  'en': { title: 'Vocabulary Practice', subtitle: 'Click a card to hear it and see stroke order, then practise with chapter reading and flashcards — no API key required!', readChapter: 'Read Chapter', stopReading: 'Stop Reading', pauseReading: 'Pause Reading', resumeReading: 'Resume Reading', speedLabel: 'Speed', wordMode: 'Word Mode', sentenceMode: 'Sentence Mode', practiceMode: 'Flashcards', practiceSetup: 'Setup Practice Range', practiceRange: 'Select card range for practice:', from: 'From #', to: 'To #', cardUnit: '', startPractice: 'Start', stopPractice: 'Stop', practiceTypeLabel: 'Practice Mode:', practiceModeStandard: 'Flashcards', practiceModeDictation: 'Dictation', orderLabel: 'Order:', orderRandom: 'Random', orderSequence: 'In Sequence', waitTimeLabel: 'Wait (sec):', repeatLabel: 'Repeat:', timesUnit: 'times', roundsLabel: 'Rounds:', roundsUnit: 'rounds', selectedCardsLabel: 'Selected {count} words', clearSelection: 'Clear Selection', chapterPractice: 'Chapter Practice', showSuggestedAnswers: 'Show Suggested Answers', hideSuggestedAnswers: 'Hide Suggested Answers', clearAnswers: 'Clear Answers', close: 'Close', selectChapter: 'Select chapter', selectCard: 'Select card {n}', deselectCard: 'Deselect card {n}', readWord: 'Read word', readSentence: 'Read sentence', hiddenCard: 'Hidden word card', homophones: 'Homophones', readAloud: 'Read aloud', showHint: 'Show answer', seconds: 'sec', noSpeech: 'Speech is not supported in this browser.', noContent: 'This chapter does not have reading content yet.', downloadSuccess: 'Data backup downloaded.', emptyVocabulary: 'No vocabulary has been added to this chapter yet.', answerPlaceholder: 'Type your answer...', sentencePlaceholder: 'Write your sentence...', suggestedAnswer: 'Suggested answer', correct: 'Correct. Well done!', incorrect: 'Not quite. Try again!', profileLabel: 'Profile', subjectLabel: 'Subject', languageLabel: 'Language', changelog: 'Change Log', mainNav: 'Main navigation', downloadData: 'Download data' }
+};
+
+const PROFILES = [
+  { id: 'User', name: 'User' },
+  { id: 'Tony', name: 'Tony' },
+  { id: 'Sofia', name: 'Sofia' }
+];
+
+const CHANGELOG_DATA = [
+  { version: 'v3.1.0', date: '2026-10-26', time: '16:41', changes: ['修正：調整語速後改用最新語言設定朗讀，停止朗讀不會被延遲啟動覆蓋。', '改善：HanziWriter 尺寸更新與清理、CDN 載入失敗提示及應用程式錯誤畫面。', '改善：鍵盤操作、螢幕閱讀器標籤、對話框焦點管理及減少動態效果。'] },
+  { version: 'v3.0.0', date: '2026-10-25', time: '10:00', changes: ['轉換：建立無需 API 金鑰的單一 HTML 版本，所有詞彙資料內嵌。', '移除：AI 詞彙語境、隨機故事、隨堂測驗與自動表情符號功能。', '保留：單字卡、筆順動畫、語音朗讀、章節朗讀及單字抽查。', '修正：英文句子分段、朗讀詞語識別，以及沒有課文內容時的提示。'] },
+  { version: 'v2.12.0', date: '2026-10-24', time: '21:54', changes: ['新增：為 Sofia 加入了中文科「Exam 1 (12 Nov)」考試範圍。', '內容：收錄了單元一、單元二、單元四共計 41 個詞彙，並配置了視覺分隔線。'] },
+  { version: 'v2.11.0', date: '2026-10-24', time: '21:55', changes: ['新增：為 Sofia 加入了英文科「Dictation 2 (26-29 Oct)」範圍。', '內容：收錄了 Part A 的 7 組形容詞、Part B 的 10 組動詞變化、及 Part C Bonus 的 10 個量詞片語。'] },
+  { version: 'v2.10.0', date: '2026-10-24', time: '21:50', changes: ['新增：為 Sofia 加入了中文科「第三次默書」範圍 (Dictation 3 - Chapter 19)。', '內容：收錄了甲部 14 個詞語（含筆順與粵拼）及乙部段落內容。'] },
+  { version: 'v2.9.0', date: '2026-10-24', time: '21:35', changes: ['新增：為 Tony 加入了中文科「Exam 1 (12 Nov)」考試範圍。', '內容：收錄了單元一、單元三、單元四共計 30 個詞彙。'] },
+  { version: 'v2.8.0', date: '2026-10-24', time: '21:32', changes: ['新增：為 Tony 加入了中文科「第三次默書」範圍 (Dictation 3 - Chapter 11)。', '內容：收錄了甲部 14 個詞語（含筆順與粵拼）、乙部 2 個段落，以及丙部的加分區提示。'] },
+  { version: 'v2.7.0', date: '2026-10-24', time: '21:25', changes: ['新增：為 Tony 加入了英文科「Dictation 2 - Unit 3 (27 Oct)」範圍。', '內容：收錄了 A部 10個詞彙、B部 10組動詞變化 及 C部 6個額外形容詞，並配有視覺分段。'] },
+  { version: 'v2.6.0', date: '2026-09-29', time: '16:36', changes: ['新增：為 Sofia 加入了中文科「第一次默書」範圍 (Dictation 1 - Unit 1 & 2)。', '內容：收錄了甲部 14 個詞語（含筆順與粵拼），乙部段落預留了空位供後續輸入。'] },
+  { version: 'v2.5.1', date: '2026-09-29', time: '16:35', changes: ['新增：為 Tony 加入了英文科「Dictation 1 - Unit 1 & 2」範圍。', '內容：收錄了 Part A 的 10 個詞彙，以及 Part B 的 5 個句子，並配備專屬視覺分隔線。'] },
+  { version: 'v2.5.0', date: '2026-09-29', time: '16:35', changes: ['新增：為 Tony 加入了中文科「第一次默書」範圍 (Dictation 1 - Unit 1 & 2)。', '內容：收錄了甲部 14 個詞語（含筆順與粵拼），以及乙部 2 個段落，並配備專屬視覺分隔線。'] },
+  { version: 'v2.2.0', date: '2026-05-15', time: '21:00', changes: ['新增：為 Sofia 重新建立檔案，並加入了「Dictation 8 (29 May)」英文科默書範圍。', '內容：收錄了 Part A 的 10 個科目/動作詞彙，以及 Part B 的 5 句課文重點句子，並配備專屬視覺分隔線。'] },
+  { version: 'v2.1.0', date: '2026-05-15', time: '20:40', changes: ['新增：為 Tony 加入了「一年級評估三」中文科詞語範圍，並配置了單元視覺分隔線與 30 個單字資料。', '修復：解決編譯器遇到不合法 Diff 標記導致的系統崩潰錯誤。'] },
+  { version: 'v2.0.0', date: '2026-05-15', time: '20:00', changes: ['初始化：建立全新空資料庫版本，保留所有核心與 AI 功能，清空預設章節內容，方便使用者自行擴充與客製化。'] }
+];
+
+const HOMOPHONE_DB = {
+  '玻': ['波', '菠', '撥'], '璃': ['離', '梨', '釐', '籬'], '堅': ['肩', '艱', '煎'], '硬': ['櫻'], '易': ['二', '義', '異', '意'], '碎': ['歲', '穗', '隧', '遂'], '透': ['套'], '明': ['名', '鳴', '銘'], '物': ['勿', '襪'], '料': ['廖'], '常': ['長', '腸', '嘗'], '生': ['聲', '星', '升'], '中': ['忠', '終', '鐘'], '無': ['吳', '梧', '吾', '毋'], '處': ['觸', '畜'], '種': ['腫', '總'], '類': ['淚', '累'], '和': ['禾', '河', '何'], '用': ['勇', '湧'], '途': ['圖', '屠', '徒', '塗'], '前': ['錢', '潛', '千'], '大': ['代', '帶', '袋'], '多': ['躲'], '製': ['制', '志', '智', '治', '置'], '造': ['灶', '燥', '躁'], '窗': ['創'], '戶': ['互', '護'], '容': ['融', '絨', '蓉'], '器': ['氣', '企', '棄'], '到': ['道', '度', '倒'], '現': ['線', '扇', '限'], '代': ['大', '袋', '待'], '越': ['月', '粵', '閱'], '面': ['麵', '免'], '世': ['勢', '細', '替', '視', '試'], '帶': ['大', '代', '袋'], '便': ['辯', '變', '遍', '辨'], '利': ['莉', '痢', '力', '立', '麗'], '根': ['跟'], '據': ['句', '鋸', '距'], '特': ['匿'], '殊': ['書', '輸', '梳', '舒'], '下': ['夏', '嚇'], '會': ['匯', '繪'], '介': ['屆', '界'], '紹': ['兆', '肇'], '主': ['煮', '嘱'], '要': ['耀', '藥', '躍'], '變': ['便', '遍', '辨', '辯'], '色': ['式', '飾', '識'], '能': ['熊'], '對': ['隊', '兌'], '陽': ['羊', '揚', '洋'], '光': ['鄺'], '反': ['返'], '射': ['謝'], '作': ['做', '坐', '座'], '建': ['健', '鍵', '件'], '築': ['竹', '捉', '燭'], '裝': ['莊', '妝'], '室': ['適', '釋', '識', '試', '事'], '卻': ['腳'], '情': ['晴', '呈', '程'], '況': ['鄺', '礦'], '得': ['德'], '清': ['青', '輕', '傾'], '二': ['貳', '義', '易', '異'], '楚': ['礎', '儲'], '吸': ['息', '希', '稀', '夕'], '熱': ['越'], '助': ['住', '注', '柱'], '調': ['條', '掉'], '節': ['哲', '折'], '溫': ['瘟'], '度': ['道', '到', '導'], '使': ['史', '駛', '始'], '房': ['防', '妨', '坊'], '冬': ['東', '懂'], '夏': ['下', '嚇'], '涼': ['良', '糧', '梁'], '火': ['伙', '夥'], '傘': ['散'], '高': ['糕', '膏'], '張': ['章', '彰', '漿'], '天': ['添'], '阻': ['祖', '組'], '擋': ['黨'], '猛': ['盲'], '爽': ['嗓'], '寒': ['韓', '涵', '汗'], '風': ['豐', '蜂', '瘋', '封'], '刺': ['次', '伺', '賜'], '骨': ['股', '谷'], '季': ['計', '記', '寄'], '冷': ['領'], '空': ['控'], '氣': ['器', '棄', '企'], '保': ['寶', '堡'], '持': ['遲', '池', '馳'], '三': ['衫', '參'], '手': ['首', '守'], '機': ['基', '飢', '肌'], '平': ['瓶', '萍', '評'], '板': ['版'], '電': ['殿', '墊'], '腦': ['惱', '老'], '觸': ['捉', '竹', '燭'], '控': ['空'], '屏': ['平', '瓶', '萍'], '幕': ['漠', '膜'], '當': ['檔'], '裏': ['理', '李', '里'], '路': ['露', '鷺'], '指': ['紙', '紫'], '移': ['疑', '儀', '宜', '兒'], '動': ['洞', '凍'], '位': ['為', '胃', '未'], '置': ['志', '智', '製', '制'], '推': ['退'], '算': ['蒜'], '開': ['開'], '應': ['英', '鷹'], '網': ['往', '枉'], '源': ['原', '完', '元', '園'], '跟': ['根'], '自': ['字', '治', '寺'], '警': ['景', '頸', '井'], '報': ['暴', '抱'], '系': ['係'], '統': ['桶', '痛'], '相': ['商', '傷', '箱'], '連': ['蓮', '憐'], '如': ['茹', '儒'], '果': ['裹', '敢'], '賊': ['即'], '破': ['播'], '碰': ['捧'], '就': ['袖'], '響': ['享', '饗'], '最': ['醉'], '後': ['厚', '候'], '防': ['房', '妨', '坊'], '彈': ['蛋', '但', '淡', '誕'], '由': ['游', '郵', '油'], '兩': ['輛', '亮'], '組': ['祖', '阻'], '成': ['城', '誠', '乘', '呈'], '夾': ['甲'], '脂': ['知', '枝', '姿', '芝'], '即': ['急', '級', '極', '積'], '子': ['紫', '梓', '籽'], '穿': ['川'], '收': ['修', '休'], '量': ['亮'], '分': ['婚', '昏'], '散': ['傘'], '威': ['威'], '因': ['恩', '欣'], '銀': ['人'], '行': ['降', '恆', '形'], '珠': ['豬', '株'], '寶': ['保', '堡'], '店': ['墊', '電'], '安': ['鞍', '氨'], '全': ['泉', '痊', '權', '存'], '可': ['渴'], '靠': ['銬'], '科': ['棵', '顆'], '學': ['鶴'], '家': ['加', '嘉', '迦'], '還': ['環'], '斷': ['段', '鍛'], '地': ['第', '帝'], '研': ['言', '嚴'], '讓': ['樣', '漾'], '發': ['法', '乏'], '揮': ['輝', '徽', '灰'], '更': ['耕', '羹'], '創': ['愴', '窗'], '奇': ['騎', '旗', '祈', '棋'], '跡': ['積', '績', '擊', '激'], '纖': ['籤', '殲'], '維': ['微'], '織': ['職', '積', '跡'], '布': ['部', '步'], '衣': ['醫', '依', '一'], '服': ['福', '伏'], '做': ['租', '組', '作'], '鏡': ['敬'], '條': ['調', '掉'], '紗': ['沙', '鯊'], '線': ['現', '扇'], '質': ['嫉'], '感': ['敢', '減'], '關': ['關'], '毛': ['無'], '羊': ['陽', '洋', '揚'], '兔': ['吐'], '等': ['等'], '紡': ['訪'], '輕': ['清', '青', '傾'], '柔': ['揉', '蹂'], '適': ['釋', '識', '室', '式'], '合': ['盒', '俠'], '著': ['酌', '啄'], '蠶': ['慚'], '吐': ['兔'], '理': ['李', '里', '裏'], '乾': ['干', '肝'], '麻': ['嘛'], '亞': ['阿', '鴉'], '水': ['誰'], '強': ['牆', '翔'], '棉': ['眠'], '技': ['忌', '寄'], '術': ['述'], '石': ['十', '實', '拾', '食'], '油': ['游', '郵', '由'], '工': ['公', '功', '弓'], '抗': ['鄺'], '皺': ['咒'], '霉': ['煤', '梅', '枚'], '臭': ['秀'], '選': ['癬'], '摸': ['膜'], '標': ['鏢', '彪'], '籤': ['纖', '殲'], '需': ['須', '鬚'], '春': ['椿', '村'], '圖': ['途', '屠', '徒', '塗'], '畫': ['話', '化', '樺'], '初': ['出'], '早': ['澡', '棗', '藻'], '晨': ['臣', '神', '塵'], '爸': ['把', '霸'], '媽': ['孖'], '步': ['部', '佈'], '草': ['糙'], '露': ['路', '鷺', '賂'], '綠': ['錄', '碌'], '芽': ['牙', '衙', '崖'], '鑽': ['專', '尊'], '枝': ['知', '姿', '脂'], '頭': ['投'], '黃': ['王', '皇'], '白': ['百', '伯'], '聽': ['廳', '汀'], '樹': ['署', '曙'], '吱': ['知', '枝', '姿'], '歌': ['哥'], '唱': ['倡', '暢'], '陣': ['震', '鎮'], '驚': ['經', '京'], '喜': ['起'], '撫': ['府', '斧', '腐'], '軟': ['遠'], '像': ['象', '匠'], '毯': ['坦', '忐'], '聞': ['民', '蚊'], '香': ['鄉'], '蝴': ['狐', '壺', '湖'], '蝶': ['疊', '碟', '諜'], '站': ['綻', '讚'], '美': ['尾'], '麗': ['例', '厲', '勵', '利'], '景': ['警', '頸', '井'], '實': ['十', '拾', '石', '食'], '宜': ['疑', '儀', '移', '誼', '兒']
+};
+
+const CHAPTERS = {
+  'User': [],
+  'Tony': [
+    { id: 'tony_zh_exam_1', title: 'Exam 1 (12 Nov)', subject: 'chinese', content: '' },
+    { id: 'tony_zh_dictation_1_unit_1_2', title: 'Dictation 1 - Unit 1 & 2', subject: 'chinese', content: '五歲的欣欣，會寫字、畫畫，還會唱好聽的兒歌。\n\n六歲的欣欣，開始換牙，還整天拉着爸爸和媽媽，問這又問那。' },
+    { id: 'tony_zh_dictation_3_ch11', title: 'Dictation 3 - Chapter 11', subject: 'chinese', content: '我認為運動除了可以改善體能，增強抵抗力外，還可以舒展身心，消除壓力。\n\n我會堅持認真做運動，將來做個籃球運動員！' },
+    { id: 'tony_en_dictation_1_unit_1_2', title: 'Dictation 1 - Unit 1 & 2', subject: 'english', content: "We must sit still and pay attention.\n\nWe mustn't pick the flowers in the garden.\n\nWe have an assembly in the hall.\n\nYou must wait for your turn.\n\nYou must line up." },
+    { id: 'tony_en_dictation_2_unit_3', title: 'Dictation 2 - Unit 3 (27 Oct)', subject: 'english', content: "" }
+  ],
+  'Sofia': [
+    { id: 'sofia_en_dictation_1_unit_1', title: 'Dictation 1 - Unit 1', subject: 'english', content: 'I have many hobbies. My favourite sport is baseball. I usually play it with my classmates after school on Mondays.\n\nI also like dancing too. I often dance at festivals. We all wear gorgeous costumes and perform in parades. My parents always take lots of photos of me.\n\nI sometimes go to the beach at weekends. I like swimming and having a barbecue with my family at the end of the day.' },
+    { id: 'sofia_en_dictation_2_unit_3', title: 'Dictation 2 - Unit 3 (26-29 Oct)', subject: 'english', content: '' },
+    { id: 'sofia_zh_exam_1', title: 'Exam 1 (12 Nov)', subject: 'chinese', content: '' },
+    { id: 'sofia_zh_dictation_1_unit_1_2', title: 'Dictation 1 - Unit 1 & 2', subject: 'chinese', content: '（請在此輸入四上第一冊第一課第2段課文內容）' },
+    { id: 'sofia_zh_dictation_3_ch19', title: 'Dictation 3 - Chapter 19', subject: 'chinese', content: '所以，我們感受到光明和溫暖，享受到清風送爽和雨雪的滋潤，都是太陽賜予的。\n\n沒有太陽，就不會有這個美麗可愛的世界，地球上就會變得黑暗冰冷，死氣沉沉。' }
+  ]
+};
+
+const VOCABULARY_DB = {
+  'tony_zh_exam_1': [
+    { word: '好動', translation: 'active', chars: [{ c: '好', p: 'hou3' }, { c: '動', p: 'dung6' }] },
+    { word: '家務', translation: 'housework', chars: [{ c: '家', p: 'gaa1' }, { c: '務', p: 'mou6' }] },
+    { word: '奇怪', translation: 'strange', chars: [{ c: '奇', p: 'kei4' }, { c: '怪', p: 'gwaai3' }] },
+    { word: '總是', translation: 'always', chars: [{ c: '總', p: 'zung2' }, { c: '是', p: 'si6' }] },
+    { word: '但是', translation: 'but', chars: [{ c: '但', p: 'daan6' }, { c: '是', p: 'si6' }] },
+    { word: '改變', translation: 'change', chars: [{ c: '改', p: 'goi2' }, { c: '變', p: 'bin3' }] },
+    { word: '依然', translation: 'still', chars: [{ c: '依', p: 'ji1' }, { c: '然', p: 'jin4' }] },
+    { word: '幫忙', translation: 'help', chars: [{ c: '幫', p: 'bong1' }, { c: '忙', p: 'mong4' }] },
+    { word: '包括', translation: 'include', chars: [{ c: '包', p: 'baau1' }, { c: '括', p: 'kut3' }] },
+    { word: '探望', translation: 'visit', chars: [{ c: '探', p: 'taam3' }, { c: '望', p: 'mong6' }] },
+    { word: '肩膀', translation: 'shoulder', chars: [{ c: '肩', p: 'gin1' }, { c: '膀', p: 'bong2' }] },
+    { word: '寶貝', translation: 'treasure / baby', chars: [{ c: '寶', p: 'bou2' }, { c: '貝', p: 'bui3' }] },
+    { word: '頭髮', translation: 'hair', chars: [{ c: '頭', p: 'tau4' }, { c: '髮', p: 'faat3' }] },
+    { word: '味道', translation: 'taste / smell', chars: [{ c: '味', p: 'mei6' }, { c: '道', p: 'dou6' }] },
+    { word: '貪吃', translation: 'gluttonous', chars: [{ c: '貪', p: 'taam1' }, { c: '吃', p: 'hek3' }] },
+    { word: '鬼臉', translation: 'funny face', chars: [{ c: '鬼', p: 'gwai2' }, { c: '臉', p: 'lim5' }] },
+    { word: '一定', translation: 'definitely', chars: [{ c: '一', p: 'jat1' }, { c: '定', p: 'ding6' }] },
+    { word: '嘴巴', translation: 'mouth', chars: [{ c: '嘴', p: 'zeoi2' }, { c: '巴', p: 'baa1' }] },
+    { word: '雞腿', translation: 'chicken leg', chars: [{ c: '雞', p: 'gai1' }, { c: '腿', p: 'teoi2' }] },
+    { word: '眼睛', translation: 'eyes', chars: [{ c: '眼', p: 'ngaan5' }, { c: '睛', p: 'zing1' }] },
+    { word: '消除', translation: 'eliminate', chars: [{ c: '消', p: 'siu1' }, { c: '除', p: 'ceoi4' }] },
+    { word: '難忘', translation: 'unforgettable', chars: [{ c: '難', p: 'naan4' }, { c: '忘', p: 'mong4' }] },
+    { word: '增強', translation: 'strengthen', chars: [{ c: '增', p: 'zang1' }, { c: '強', p: 'koeng4' }] },
+    { word: '訓練', translation: 'training', chars: [{ c: '訓', p: 'fan3' }, { c: '練', p: 'lin6' }] },
+    { word: '認真', translation: 'serious', chars: [{ c: '認', p: 'jing6' }, { c: '真', p: 'zan1' }] },
+    { word: '練習', translation: 'practice', chars: [{ c: '練', p: 'lin6' }, { c: '習', p: 'zaap6' }] },
+    { word: '紀念', translation: 'commemorate', chars: [{ c: '紀', p: 'gei2' }, { c: '念', p: 'nim6' }] },
+    { word: '繼續', translation: 'continue', chars: [{ c: '繼', p: 'gai3' }, { c: '續', p: 'zuk6' }] },
+    { word: '心滿意足', translation: 'perfectly satisfied', chars: [{ c: '心', p: 'sam1' }, { c: '滿', p: 'mun5' }, { c: '意', p: 'ji3' }, { c: '足', p: 'zuk1' }] },
+    { word: '興高采烈', translation: 'in high spirits', chars: [{ c: '興', p: 'hing3' }, { c: '高', p: 'gou1' }, { c: '采', p: 'coi2' }, { c: '烈', p: 'lit6' }] }
+  ],
+  'tony_zh_dictation_1_unit_1_2': [
+    { word: '非常', translation: 'very / extremely', chars: [{ c: '非', p: 'fei1' }, { c: '常', p: 'soeng4' }] },
+    { word: '活潑', translation: 'lively / active', chars: [{ c: '活', p: 'wut6' }, { c: '潑', p: 'put3' }] },
+    { word: '探望', translation: 'visit', chars: [{ c: '探', p: 'taam3' }, { c: '望', p: 'mong6' }] },
+    { word: '幫忙', translation: 'help', chars: [{ c: '幫', p: 'bong1' }, { c: '忙', p: 'mong4' }] },
+    { word: '奇怪', translation: 'strange / weird', chars: [{ c: '奇', p: 'kei4' }, { c: '怪', p: 'gwaai3' }] },
+    { word: '衣服', translation: 'clothes', chars: [{ c: '衣', p: 'ji1' }, { c: '服', p: 'fuk6' }] },
+    { word: '以前', translation: 'before / previously', chars: [{ c: '以', p: 'ji5' }, { c: '前', p: 'cin4' }] },
+    { word: '一切', translation: 'everything / all', chars: [{ c: '一', p: 'jat1' }, { c: '切', p: 'cai3' }] },
+    { word: '顏色', translation: 'color', chars: [{ c: '顏', p: 'ngaan4' }, { c: '色', p: 'sik1' }] },
+    { word: '但是', translation: 'but / however', chars: [{ c: '但', p: 'daan6' }, { c: '是', p: 'si6' }] },
+    { word: '有些', translation: 'some', chars: [{ c: '有', p: 'jau5' }, { c: '些', p: 'se1' }] },
+    { word: '一樣', translation: 'same / alike', chars: [{ c: '一', p: 'jat1' }, { c: '樣', p: 'joeng6' }] },
+    { word: '家務', translation: 'housework / chores', chars: [{ c: '家', p: 'gaa1' }, { c: '務', p: 'mou6' }] },
+    { word: '總是', translation: 'always', chars: [{ c: '總', p: 'zung2' }, { c: '是', p: 'si6' }] },
+    { word: '五歲的欣欣，會寫字、畫畫，還會唱好聽的兒歌。', translation: 'Five-year-old Yan Yan can write, draw, and also sing beautiful nursery rhymes.', chars: [] },
+    { word: '六歲的欣欣，開始換牙，還整天拉着爸爸和媽媽，問這又問那。', translation: 'Six-year-old Yan Yan is starting to lose her baby teeth, and pulls mom and dad all day long asking this and that.', chars: [] }
+  ],
+  'tony_zh_dictation_3_ch11': [
+    { word: '體育', translation: 'PE / Sports', chars: [{ c: '體', p: 'tai2' }, { c: '育', p: 'juk6' }] },
+    { word: '訓練', translation: 'Training', chars: [{ c: '訓', p: 'fan3' }, { c: '練', p: 'lin6' }] },
+    { word: '熱身', translation: 'Warm up', chars: [{ c: '熱', p: 'jit6' }, { c: '身', p: 'san1' }] },
+    { word: '興奮', translation: 'Excited', chars: [{ c: '興', p: 'hing1' }, { c: '奮', p: 'fan5' }] },
+    { word: '轉眼', translation: 'In a blink of an eye', chars: [{ c: '轉', p: 'zyun2' }, { c: '眼', p: 'ngaan5' }] },
+    { word: '增強', translation: 'Strengthen', chars: [{ c: '增', p: 'zang1' }, { c: '強', p: 'koeng4' }] },
+    { word: '發表', translation: 'Publish / Express', chars: [{ c: '發', p: 'faat3' }, { c: '表', p: 'biu2' }] },
+    { word: '難忘', translation: 'Unforgettable', chars: [{ c: '難', p: 'naan4' }, { c: '忘', p: 'mong4' }] },
+    { word: '進行', translation: 'Proceed / Conduct', chars: [{ c: '進', p: 'zeon3' }, { c: '行', p: 'hang4' }] },
+    { word: '益處', translation: 'Benefit', chars: [{ c: '益', p: 'jik1' }, { c: '處', p: 'cyu3' }] },
+    { word: '堅持', translation: 'Persist', chars: [{ c: '堅', p: 'gin1' }, { c: '持', p: 'ci4' }] },
+    { word: '快樂', translation: 'Happy', chars: [{ c: '快', p: 'faai3' }, { c: '樂', p: 'lok6' }] },
+    { word: '將來', translation: 'Future', chars: [{ c: '將', p: 'zoeng1' }, { c: '來', p: 'loi4' }] },
+    { word: '興高采烈', translation: 'In high spirits', chars: [{ c: '興', p: 'hing3' }, { c: '高', p: 'gou1' }, { c: '采', p: 'coi2' }, { c: '烈', p: 'lit6' }] },
+    { word: '我認為運動除了可以改善體能，增強抵抗力外，還可以舒展身心，消除壓力。', translation: 'I think sports can not only improve physical fitness and strengthen immunity, but also relax the body and mind, and relieve stress.', chars: [] },
+    { word: '我會堅持認真做運動，將來做個籃球運動員！', translation: 'I will persist in doing sports seriously, and become a basketball player in the future!', chars: [] },
+    { word: '「運動項目」(加分制，限時3分鐘)', translation: '[Sports Items] (Bonus marks, 3 mins limit)', chars: [] }
+  ],
+  'tony_en_dictation_1_unit_1_2': [
+    { word: 'an art room', translation: '一間美術室', chars: [] },
+    { word: 'a classroom', translation: '一間課室', chars: [] },
+    { word: 'borrow books', translation: '借書', chars: [] },
+    { word: 'a computer room', translation: '一間電腦室', chars: [] },
+    { word: 'wash hands', translation: '洗手', chars: [] },
+    { word: 'second', translation: '第二', chars: [] },
+    { word: 'play games', translation: '玩遊戲', chars: [] },
+    { word: 'paint pictures', translation: '畫畫', chars: [] },
+    { word: 'toilets', translation: '洗手間', chars: [] },
+    { word: 'a library', translation: '一間圖書館', chars: [] },
+    { word: 'We must sit still and pay attention.', translation: '我們必須安靜坐好並專心。', chars: [] },
+    { word: "We mustn't pick the flowers in the garden.", translation: '我們不可以在花園裡摘花。', chars: [] },
+    { word: 'We have an assembly in the hall.', translation: '我們在禮堂集會。', chars: [] },
+    { word: 'You must wait for your turn.', translation: '你必須排隊等候。', chars: [] },
+    { word: 'You must line up.', translation: '你必須排隊。', chars: [] }
+  ],
+  'tony_en_dictation_2_unit_3': [
+    { word: 'eat some bread', translation: '吃些麵包', chars: [] },
+    { word: 'read comics', translation: '看漫畫', chars: [] },
+    { word: 'take a rest', translation: '休息', chars: [] },
+    { word: 'drink some juice', translation: '喝些果汁', chars: [] },
+    { word: 'tired', translation: '疲倦', chars: [] },
+    { word: 'bored', translation: '無聊', chars: [] },
+    { word: 'hungry', translation: '飢餓', chars: [] },
+    { word: 'thirsty', translation: '口渴', chars: [] },
+    { word: 'watch a cartoon', translation: '看卡通', chars: [] },
+    { word: 'biscuits', translation: '餅乾', chars: [] },
+    { word: 'go, goes, going', translation: '去', chars: [] },
+    { word: 'help, helps, helping', translation: '幫助', chars: [] },
+    { word: 'learn, learns, learning', translation: '學習', chars: [] },
+    { word: 'look, looks, looking', translation: '看', chars: [] },
+    { word: 'tell, tells, telling', translation: '告訴', chars: [] },
+    { word: 'walk, walks, walking', translation: '走路', chars: [] },
+    { word: 'feel, feels, feeling', translation: '感覺', chars: [] },
+    { word: 'run, runs, running', translation: '跑', chars: [] },
+    { word: 'come, comes, coming', translation: '來', chars: [] },
+    { word: 'wake, wakes, waking', translation: '醒來', chars: [] },
+    { word: 'sweet', translation: '甜', chars: [] },
+    { word: 'sour', translation: '酸', chars: [] },
+    { word: 'juicy', translation: '多汁', chars: [] },
+    { word: 'soft', translation: '軟', chars: [] },
+    { word: 'hard', translation: '硬', chars: [] },
+    { word: 'spicy', translation: '辣', chars: [] }
+  ],
+  'sofia_en_dictation_1_unit_1': [
+    { word: 'go rock climbing', translation: '去攀岩', chars: [] },
+    { word: 'go jogging', translation: '去慢跑', chars: [] },
+    { word: 'go cycling', translation: '去騎單車', chars: [] },
+    { word: 'go ice-skating', translation: '去溜冰', chars: [] },
+    { word: 'go to an indoor playground', translation: '去室內遊樂場', chars: [] },
+    { word: 'go to a public library', translation: '去公共圖書館', chars: [] },
+    { word: 'play tennis', translation: '打網球', chars: [] },
+    { word: 'play volleyball', translation: '打排球', chars: [] },
+    { word: 'play online games', translation: '玩線上遊戲', chars: [] },
+    { word: 'play video games', translation: '玩電子遊戲', chars: [] },
+    { word: 'text my friend', translation: '傳訊息給朋友', chars: [] },
+    { word: 'read the newspaper', translation: '看報紙', chars: [] },
+    { word: 'read magazines', translation: '看雜誌', chars: [] },
+    { word: 'Tuesday', translation: '星期二', chars: [] },
+    { word: 'Wednesday', translation: '星期三', chars: [] },
+    { word: 'Friday', translation: '星期五', chars: [] },
+    { word: 'Saturday', translation: '星期六', chars: [] },
+    { word: 'I have many hobbies. My favourite sport is baseball. I usually play it with my classmates after school on Mondays.', translation: '我有很多愛好。我最喜歡的運動是棒球。我通常在星期一放學後和同學一起玩。', chars: [] },
+    { word: 'I also like dancing too. I often dance at festivals. We all wear gorgeous costumes and perform in parades. My parents always take lots of photos of me.', translation: '我也喜歡跳舞。我經常在節日裡跳舞。我們都穿著華麗的服裝在遊行中表演。我的父母總是給我拍很多照片。', chars: [] },
+    { word: 'I sometimes go to the beach at weekends. I like swimming and having a barbecue with my family at the end of the day.', translation: '我有時會在週末去海灘。我喜歡游泳，並在一天結束時和家人一起燒烤。', chars: [] }
+  ],
+  'sofia_en_dictation_2_unit_3': [
+    { word: 'thin, thinner than, the thinnest', translation: '薄/瘦，較薄/較瘦，最薄/最瘦', chars: [] },
+    { word: 'heavy, heavier than, the heaviest', translation: '重，較重，最重', chars: [] },
+    { word: 'healthy, healthier than, the healthiest', translation: '健康，較健康，最健康', chars: [] },
+    { word: 'large, larger than, the largest', translation: '大，較大，最大', chars: [] },
+    { word: 'cheap, expensive', translation: '便宜，昂貴', chars: [] },
+    { word: 'delicious, disgusting', translation: '美味，噁心', chars: [] },
+    { word: 'popular, unpopular', translation: '受歡迎，不受歡迎', chars: [] },
+    { word: 'be (is/am/are), was/were, being', translation: '是', chars: [] },
+    { word: 'have/has, had, having', translation: '有', chars: [] },
+    { word: 'put, put, putting', translation: '放', chars: [] },
+    { word: 'do, did, doing', translation: '做', chars: [] },
+    { word: 'go, went, going', translation: '去', chars: [] },
+    { word: 'eat, ate, eating', translation: '吃', chars: [] },
+    { word: 'see, saw, seeing', translation: '看見', chars: [] },
+    { word: 'tell, told, telling', translation: '告訴', chars: [] },
+    { word: 'fly, flew, flying', translation: '飛', chars: [] },
+    { word: 'sell, sold, selling', translation: '賣', chars: [] },
+    { word: 'a piece of toast', translation: '一片多士', chars: [] },
+    { word: 'a packet of biscuits', translation: '一包餅乾', chars: [] },
+    { word: 'a jar of honey', translation: '一瓶蜂蜜', chars: [] },
+    { word: 'a loaf of wholemeal bread', translation: '一條全麥麵包', chars: [] },
+    { word: 'a scoop of ice cream', translation: '一球雪糕', chars: [] },
+    { word: 'a tin of tuna', translation: '一罐吞拿魚', chars: [] },
+    { word: 'a bar of chocolate', translation: '一排朱古力', chars: [] },
+    { word: 'a tub of margarine', translation: '一盒人造牛油', chars: [] },
+    { word: 'a tube of toothpaste', translation: '一支牙膏', chars: [] },
+    { word: 'a block of cheese', translation: '一塊芝士', chars: [] }
+  ],
+  'sofia_zh_dictation_1_unit_1_2': [
+    { word: '友善', translation: 'friendly', chars: [{ c: '友', p: 'jau5' }, { c: '善', p: 'sin6' }] },
+    { word: '害羞', translation: 'shy', chars: [{ c: '害', p: 'hoi6' }, { c: '羞', p: 'sau1' }] },
+    { word: '講述', translation: 'relate / tell about', chars: [{ c: '講', p: 'gong2' }, { c: '述', p: 'seot6' }] },
+    { word: '吩咐', translation: 'instruct / command', chars: [{ c: '吩', p: 'fan1' }, { c: '咐', p: 'fu3' }] },
+    { word: '友誼', translation: 'friendship', chars: [{ c: '友', p: 'jau5' }, { c: '誼', p: 'ji4' }] },
+    { word: '鼓掌', translation: 'applaud / clap hands', chars: [{ c: '鼓', p: 'gu2' }, { c: '掌', p: 'zoeng2' }] },
+    { word: '瞬間', translation: 'instant / moment', chars: [{ c: '瞬', p: 'seon3' }, { c: '間', p: 'gaan1' }] },
+    { word: '響亮', translation: 'loud and clear', chars: [{ c: '響', p: 'hoeng2' }, { c: '亮', p: 'loeng6' }] },
+    { word: '沉默', translation: 'silent', chars: [{ c: '沉', p: 'cam4' }, { c: '默', p: 'mak6' }] },
+    { word: '緊張', translation: 'nervous / tense', chars: [{ c: '緊', p: 'gan2' }, { c: '張', p: 'zoeng1' }] },
+    { word: '勇敢', translation: 'brave', chars: [{ c: '勇', p: 'jung5' }, { c: '敢', p: 'gam2' }] },
+    { word: '呼喚', translation: 'call out', chars: [{ c: '呼', p: 'fu1' }, { c: '喚', p: 'wun6' }] },
+    { word: '盼望', translation: 'hope for / look forward to', chars: [{ c: '盼', p: 'paan3' }, { c: '望', p: 'mong6' }] },
+    { word: '劇烈', translation: 'intense / severe', chars: [{ c: '劇', p: 'kek6' }, { c: '烈', p: 'lit6' }] },
+    { word: '（請輸入四上第一冊第一課第2段課文）', translation: '[Please enter the paragraph text here]', chars: [] }
+  ],
+  'sofia_zh_dictation_3_ch19': [
+    { word: '時速', translation: 'speed (per hour)', chars: [{ c: '時', p: 'si4' }, { c: '速', p: 'cuk1' }] },
+    { word: '繁殖', translation: 'breed / reproduce', chars: [{ c: '繁', p: 'faan4' }, { c: '殖', p: 'zik6' }] },
+    { word: '蒸氣', translation: 'steam / vapor', chars: [{ c: '蒸', p: 'zing1' }, { c: '氣', p: 'hei3' }] },
+    { word: '雖然', translation: 'although', chars: [{ c: '雖', p: 'seoi1' }, { c: '然', p: 'jin4' }] },
+    { word: '實際', translation: 'actual / practical', chars: [{ c: '實', p: 'sat6' }, { c: '際', p: 'zai3' }] },
+    { word: '溫暖', translation: 'warm', chars: [{ c: '溫', p: 'wan1' }, { c: '暖', p: 'nyun5' }] },
+    { word: '即使', translation: 'even if', chars: [{ c: '即', p: 'zik1' }, { c: '使', p: 'si2' }] },
+    { word: '關係', translation: 'relationship', chars: [{ c: '關', p: 'gwaan1' }, { c: '係', p: 'hai6' }] },
+    { word: '凝結', translation: 'condense', chars: [{ c: '凝', p: 'jing4' }, { c: '結', p: 'git3' }] },
+    { word: '密切', translation: 'close / intimate', chars: [{ c: '密', p: 'mat6' }, { c: '切', p: 'cit3' }] },
+    { word: '無數', translation: 'countless', chars: [{ c: '無', p: 'mou4' }, { c: '數', p: 'sou3' }] },
+    { word: '死氣沉沉', translation: 'lifeless / dead', chars: [{ c: '死', p: 'sei2' }, { c: '氣', p: 'hei3' }, { c: '沉', p: 'cam4' }, { c: '沉', p: 'cam4' }] },
+    { word: '習以為常', translation: 'accustomed to', chars: [{ c: '習', p: 'zaap6' }, { c: '以', p: 'ji5' }, { c: '為', p: 'wai4' }, { c: '常', p: 'soeng4' }] },
+    { word: '日以繼夜', translation: 'day and night', chars: [{ c: '日', p: 'jat6' }, { c: '以', p: 'ji5' }, { c: '繼', p: 'gai3' }, { c: '夜', p: 'je6' }] },
+    { word: '所以，我們感受到光明和溫暖，享受到清風送爽和雨雪的滋潤，都是太陽賜予的。', translation: 'Therefore, the light and warmth we feel, the refreshing breeze and the nourishment of rain and snow we enjoy, are all bestowed by the sun.', chars: [] },
+    { word: '沒有太陽，就不會有這個美麗可愛的世界，地球上就會變得黑暗冰冷，死氣沉沉。', translation: 'Without the sun, there would not be this beautiful and lovely world, and the earth would become dark, cold, and lifeless.', chars: [] }
+  ],
+  'sofia_zh_exam_1': [
+    { word: '吩咐', translation: 'instruct / command', chars: [{ c: '吩', p: 'fan1' }, { c: '咐', p: 'fu3' }] },
+    { word: '介意', translation: 'mind / take offense', chars: [{ c: '介', p: 'gaai3' }, { c: '意', p: 'ji3' }] },
+    { word: '講述', translation: 'narrate / tell', chars: [{ c: '講', p: 'gong2' }, { c: '述', p: 'seot6' }] },
+    { word: '友善', translation: 'friendly', chars: [{ c: '友', p: 'jau5' }, { c: '善', p: 'sin6' }] },
+    { word: '呼喚', translation: 'call out', chars: [{ c: '呼', p: 'fu1' }, { c: '喚', p: 'wun6' }] },
+    { word: '分享', translation: 'share', chars: [{ c: '分', p: 'fan1' }, { c: '享', p: 'hoeng2' }] },
+    { word: '盼望', translation: 'hope for / look forward to', chars: [{ c: '盼', p: 'paan3' }, { c: '望', p: 'mong6' }] },
+    { word: '周圍', translation: 'surroundings / around', chars: [{ c: '周', p: 'zau1' }, { c: '圍', p: 'wai4' }] },
+    { word: '似乎', translation: 'it seems / as if', chars: [{ c: '似', p: 'ci5' }, { c: '乎', p: 'fu4' }] },
+    { word: '勇敢', translation: 'brave', chars: [{ c: '勇', p: 'jung5' }, { c: '敢', p: 'gam2' }] },
+    { word: '害羞', translation: 'shy', chars: [{ c: '害', p: 'hoi6' }, { c: '羞', p: 'sau1' }] },
+    { word: '交談', translation: 'converse / talk', chars: [{ c: '交', p: 'gaau1' }, { c: '談', p: 'taam4' }] },
+    { word: '彷彿', translation: 'as if / seemingly', chars: [{ c: '彷', p: 'fong2' }, { c: '彿', p: 'fat1' }] },
+    { word: '脫胎換骨', translation: 'thoroughly remolded / reborn', chars: [{ c: '脫', p: 'tyut3' }, { c: '胎', p: 'toi1' }, { c: '換', p: 'wun6' }, { c: '骨', p: 'gwat1' }] },
+    { word: '氣喘', translation: 'asthma / panting', chars: [{ c: '氣', p: 'hei3' }, { c: '喘', p: 'cyun2' }] },
+    { word: '怒吼', translation: 'roar / howl', chars: [{ c: '怒', p: 'nou6' }, { c: '吼', p: 'haau2' }] },
+    { word: '喜悅', translation: 'joy / gladness', chars: [{ c: '喜', p: 'hei2' }, { c: '悅', p: 'jyut6' }] },
+    { word: '蠕動', translation: 'wriggle / squirm', chars: [{ c: '蠕', p: 'jyu4' }, { c: '動', p: 'dung6' }] },
+    { word: '黑漆漆', translation: 'pitch-dark', chars: [{ c: '黑', p: 'hak1' }, { c: '漆', p: 'cat1' }, { c: '漆', p: 'cat1' }] },
+    { word: '伶俐', translation: 'clever / quick-witted', chars: [{ c: '伶', p: 'ling4' }, { c: '俐', p: 'lei6' }] },
+    { word: '索性', translation: 'simply / might as well', chars: [{ c: '索', p: 'sok3' }, { c: '性', p: 'sing3' }] },
+    { word: '動彈', translation: 'move', chars: [{ c: '動', p: 'dung6' }, { c: '彈', p: 'daan6' }] },
+    { word: '光輝', translation: 'radiance / brilliance', chars: [{ c: '光', p: 'gwong1' }, { c: '輝', p: 'fai1' }] },
+    { word: '白茸茸', translation: 'white and fluffy', chars: [{ c: '白', p: 'baak6' }, { c: '茸', p: 'jung4' }, { c: '茸', p: 'jung4' }] },
+    { word: '飛翔', translation: 'fly / hover', chars: [{ c: '飛', p: 'fei1' }, { c: '翔', p: 'coeng4' }] },
+    { word: '無限', translation: 'infinite / limitless', chars: [{ c: '無', p: 'mou4' }, { c: '限', p: 'haan6' }] },
+    { word: '伸展', translation: 'extend / stretch', chars: [{ c: '伸', p: 'san1' }, { c: '展', p: 'zin2' }] },
+    { word: '莊嚴', translation: 'solemn / dignified', chars: [{ c: '莊', p: 'zong1' }, { c: '嚴', p: 'jim4' }] },
+    { word: '威武', translation: 'mighty / powerful', chars: [{ c: '威', p: 'wai1' }, { c: '武', p: 'mou5' }] },
+    { word: '時尚', translation: 'fashion / trendy', chars: [{ c: '時', p: 'si4' }, { c: '尚', p: 'soeng6' }] },
+    { word: '氣派', translation: 'imposing manner / style', chars: [{ c: '氣', p: 'hei3' }, { c: '派', p: 'paai3' }] },
+    { word: '興致勃勃', translation: 'full of zest / in high spirits', chars: [{ c: '興', p: 'hing3' }, { c: '致', p: 'zi3' }, { c: '勃', p: 'but6' }, { c: '勃', p: 'but6' }] },
+    { word: '獨特', translation: 'unique', chars: [{ c: '獨', p: 'duk6' }, { c: '特', p: 'dak6' }] },
+    { word: '新型', translation: 'new type / latest model', chars: [{ c: '新', p: 'san1' }, { c: '型', p: 'jing4' }] },
+    { word: '無瑕', translation: 'flawless', chars: [{ c: '無', p: 'mou4' }, { c: '瑕', p: 'haa4' }] },
+    { word: '羅列', translation: 'set out / list', chars: [{ c: '羅', p: 'lo4' }, { c: '列', p: 'lit6' }] },
+    { word: '目不暇接', translation: 'too many things to see', chars: [{ c: '目', p: 'muk6' }, { c: '不', p: 'bat1' }, { c: '暇', p: 'haa6' }, { c: '接', p: 'zip3' }] },
+    { word: '星羅棋布', translation: 'spread all over like stars or chess pieces', chars: [{ c: '星', p: 'sing1' }, { c: '羅', p: 'lo4' }, { c: '棋', p: 'kei4' }, { c: '布', p: 'bou3' }] },
+    { word: '靈機一動', translation: 'a sudden brainwave', chars: [{ c: '靈', p: 'ling4' }, { c: '機', p: 'gei1' }, { c: '一', p: 'jat1' }, { c: '動', p: 'dung6' }] },
+    { word: '圍繞', translation: 'revolve around / center on', chars: [{ c: '圍', p: 'wai4' }, { c: '繞', p: 'jiu5' }] },
+    { word: '連綿不斷', translation: 'continuous / unbroken', chars: [{ c: '連', p: 'lin4' }, { c: '綿', p: 'min4' }, { c: '不', p: 'bat1' }, { c: '斷', p: 'dyun6' }] }
+  ]
+};
+
+const PRACTICE_DB = {};
+
+// ==========================================
+// --- UI 元件區塊 ---
+// ==========================================
+
+const BlankInput = memo(({ id, value, onChange, answer, showAnswer, individualReveals, onToggleReveal, hintLabel }) => {
+  const minW = Math.max(answer.length * 1.5, 4) + 'em';
+  const isRevealed = showAnswer || (individualReveals && individualReveals[id]);
+  return (
+    <span className="relative inline-block mx-1 align-middle whitespace-nowrap group">
+      <input 
+        type="text" 
+        style={{ width: minW }} 
+        className={`border-b-2 bg-transparent text-center focus:outline-none focus:border-indigo-500 transition-colors pr-6 ${isRevealed ? 'border-emerald-300 text-transparent' : 'border-slate-400 text-slate-800 font-bold'}`} 
+        value={value || ''} 
+        onChange={(e) => onChange(id, e.target.value)} 
+        disabled={isRevealed} 
+      />
+      {isRevealed && (
+        <span className="absolute left-0 top-0 w-full pr-6 text-center text-emerald-600 font-bold pointer-events-none drop-shadow-sm h-full flex items-center justify-center">
+          {answer}
+        </span>
+      )}
+      {!showAnswer && (
+        <button 
+          onClick={(e) => { e.preventDefault(); onToggleReveal(id); }} 
+          className={`absolute right-0 top-1/2 -translate-y-1/2 p-1 transition-all outline-none ${individualReveals && individualReveals[id] ? 'text-emerald-500 hover:text-slate-400 opacity-100' : 'text-slate-400 hover:text-amber-500 opacity-70 hover:opacity-100'}`} 
+          aria-label={hintLabel}>
+          <HelpCircle size={14} aria-hidden="true" />
+        </button>
+      )}
+    </span>
+  );
+});
+
+const SectionSeparator = memo(({ icon: Icon, color, text, isFirst }) => (
+  <div className={`col-span-full w-full flex items-center pb-4 ${isFirst ? 'pt-2 sm:pt-4' : 'pt-8'}`}>
+    <div className="flex-1 h-[2px] bg-slate-200 rounded-full"></div>
+    <div className={`px-4 py-1.5 mx-4 border-2 border-slate-200 rounded-full bg-white text-slate-500 font-bold text-sm shadow-sm flex items-center gap-2`}>
+      <Icon size={16} className={color} /> {text}
+    </div>
+    <div className="flex-1 h-[2px] bg-slate-200 rounded-full"></div>
+  </div>
+));
+
+const getSeparatorConfig = (chapterId, index) => {
+  if (chapterId === 'sofia_en_dictation_1_unit_1') {
+      if (index === 0) return { icon: BookOpen, color: 'text-indigo-500', text: 'Part A (50%)', isFirst: true };
+      if (index === 17) return { icon: Sparkles, color: 'text-amber-500', text: 'Part B (50%)', isFirst: false };
+  }
+  if (chapterId === 'sofia_en_dictation_2_unit_3') {
+      if (index === 0) return { icon: BookOpen, color: 'text-indigo-500', text: 'Part A: Adjectives 50%', isFirst: true };
+      if (index === 7) return { icon: Sparkles, color: 'text-amber-500', text: 'Part B: Verb Table 50%', isFirst: false };
+      if (index === 17) return { icon: Sparkles, color: 'text-pink-500', text: 'Part C: Bonus Quantifiers', isFirst: false };
+  }
+  if (chapterId === 'tony_zh_dictation_1_unit_1_2') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '甲、詞語 (二上第一冊)', isFirst: true };
+      if (index === 14) return { icon: Sparkles, color: 'text-amber-500', text: '乙、段落 (第一課第6及7段)', isFirst: false };
+  }
+  if (chapterId === 'tony_en_dictation_1_unit_1_2') {
+      if (index === 0) return { icon: BookOpen, color: 'text-indigo-500', text: 'A. Vocabulary 50%', isFirst: true };
+      if (index === 10) return { icon: Sparkles, color: 'text-amber-500', text: 'B. Sentences 50%', isFirst: false };
+  }
+  if (chapterId === 'sofia_zh_dictation_1_unit_1_2') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '甲、詞語 (四上第一冊)', isFirst: true };
+      if (index === 14) return { icon: Sparkles, color: 'text-amber-500', text: '乙、段落 (第一課第2段)', isFirst: false };
+  }
+  if (chapterId === 'tony_zh_dictation_3_ch11') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '甲、詞語 (二上第二冊 第11課)', isFirst: true };
+      if (index === 14) return { icon: Sparkles, color: 'text-amber-500', text: '乙、段落', isFirst: false };
+      if (index === 16) return { icon: Sparkles, color: 'text-pink-500', text: '丙、主題詞默寫', isFirst: false };
+  }
+  if (chapterId === 'tony_en_dictation_2_unit_3') {
+      if (index === 0) return { icon: BookOpen, color: 'text-indigo-500', text: 'A. Vocabulary 50%', isFirst: true };
+      if (index === 10) return { icon: Sparkles, color: 'text-pink-500', text: 'B. Verb table 50%', isFirst: false };
+      if (index === 20) return { icon: Sparkles, color: 'text-amber-500', text: 'C. Adjectives @Bonus', isFirst: false };
+  }
+  if (chapterId === 'tony_zh_exam_1') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '單元一 (第1、2課)', isFirst: true };
+      if (index === 10) return { icon: Sparkles, color: 'text-amber-500', text: '單元三 (第8、9課)', isFirst: false };
+      if (index === 20) return { icon: Sparkles, color: 'text-pink-500', text: '單元四 (第11、12課)', isFirst: false };
+  }
+  if (chapterId === 'sofia_zh_dictation_3_ch19') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '甲、詞語 (四上第二冊 第19課)', isFirst: true };
+      if (index === 14) return { icon: Sparkles, color: 'text-amber-500', text: '乙、段落', isFirst: false };
+  }
+  if (chapterId === 'sofia_zh_exam_1') {
+      if (index === 0) return { icon: BookOpen, color: 'text-teal-500', text: '單元一 (第1、2課)', isFirst: true };
+      if (index === 14) return { icon: Sparkles, color: 'text-amber-500', text: '單元二 (第4、5課)', isFirst: false };
+      if (index === 27) return { icon: Sparkles, color: 'text-pink-500', text: '單元四 (第12、13課)', isFirst: false };
+  }
+  return null;
+};
+
+const getCharacterBoxSize = () => {
+  if (typeof window === 'undefined') return 44;
+  if (window.innerWidth >= 1024) return 88;
+  if (window.innerWidth >= 768) return 72;
+  if (window.innerWidth >= 640) return 64;
+  return 44;
+};
+
+const CharacterBox = memo(({ charItem, isPlaying, charIdx, isHidden }) => {
+  const containerRef = useRef(null);
+  const writerRef = useRef(null);
+  const animationTimerRef = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [boxSize, setBoxSize] = useState(getCharacterBoxSize);
+
+  useEffect(() => {
+    const handleResize = () => setBoxSize(getCharacterBoxSize());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    if (!containerRef.current) return;
+    setIsLoaded(false);
+    loadHanziWriter().then(HanziWriter => {
+      if (!isMounted || !containerRef.current) return;
+      if (writerRef.current) {
+        try { writerRef.current.cancelQuiz?.(); writerRef.current.pauseAnimation?.(); } catch (error) {}
+        writerRef.current = null;
+      }
+      containerRef.current.innerHTML = '';
+      const size = getCharacterBoxSize();
+      const currentSpeed = window.__speechSpeed || 0.6;
+      writerRef.current = HanziWriter.create(containerRef.current, charItem.c, {
+        width: size - 10, height: size - 10, padding: 5,
+        strokeAnimationSpeed: 0.8 * currentSpeed, delayBetweenStrokes: 150 / currentSpeed,
+        strokeColor: '#000000', radicalColor: '#f43f5e', outlineColor: '#e2e8f0', showOutline: true,
+        onLoadCharDataSuccess: () => { if (isMounted) setIsLoaded(true); },
+        onLoadCharDataError: () => { if (isMounted) setIsLoaded(false); }
+      });
+    }).catch(error => {
+      if (isMounted) setIsLoaded(false);
+      console.error("HanziWriter failed to load", error);
+    });
+    return () => {
+      isMounted = false;
+      if (animationTimerRef.current) {
+        clearTimeout(animationTimerRef.current);
+        animationTimerRef.current = null;
+      }
+      if (writerRef.current) {
+        try { writerRef.current.cancelQuiz?.(); writerRef.current.pauseAnimation?.(); } catch (error) {}
+        writerRef.current = null;
+      }
+      if (containerRef.current) containerRef.current.innerHTML = '';
+    };
+  }, [charItem.c]);
+
+  useEffect(() => {
+    if (!writerRef.current || !isLoaded) return;
+    writerRef.current.updateDimensions({ width: boxSize - 10, height: boxSize - 10, padding: 5 });
+  }, [boxSize, isLoaded]);
+
+  useEffect(() => {
+    if (animationTimerRef.current) {
+      clearTimeout(animationTimerRef.current);
+      animationTimerRef.current = null;
+    }
+    if (isPlaying && writerRef.current && isLoaded && !isHidden) {
+      if (prefersReducedMotion()) {
+        writerRef.current.showCharacter();
+        return;
+      }
+      writerRef.current.hideCharacter();
+      const currentSpeed = window.__speechSpeed || 0.6;
+      animationTimerRef.current = setTimeout(() => {
+        animationTimerRef.current = null;
+        if (writerRef.current) writerRef.current.animateCharacter();
+      }, charIdx * (800 / currentSpeed));
+    }
+    return () => {
+      if (animationTimerRef.current) {
+        clearTimeout(animationTimerRef.current);
+        animationTimerRef.current = null;
+      }
+    };
+  }, [isPlaying, charIdx, isLoaded, isHidden]);
+
+  return (
+    <div className="flex flex-col items-center">
+      <span className="text-indigo-600 text-[10px] sm:text-sm md:text-lg font-bold mb-0.5 sm:mb-1 h-3.5 sm:h-6 tracking-wide drop-shadow-sm leading-none">
+        {!isHidden ? charItem.p : ''}
+      </span>
+      <div className={`flex items-center justify-center w-[44px] h-[44px] sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 border-2 rounded-xl relative shadow-sm transition-colors ${isPlaying ? 'bg-indigo-50 border-indigo-300' : 'bg-white/95 border-slate-200'}`}>
+        <div className="absolute inset-0 border-b-2 border-dashed border-slate-200 top-1/2 w-full -translate-y-px z-0"></div>
+        <div className="absolute inset-0 border-r-2 border-dashed border-slate-200 left-1/2 h-full -translate-x-px z-0"></div>
+        <div ref={containerRef} aria-hidden="true" className={`relative z-10 w-full h-full flex items-center justify-center ${!isLoaded || isHidden ? 'invisible' : 'visible'}`} />
+        {!isLoaded && !isHidden && <span className="absolute z-20 text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-serif text-slate-800">{charItem.c}</span>}
+        {isHidden && <span className="absolute z-20 text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-serif text-slate-300">?</span>}
+      </div>
+    </div>
+  );
+});
+
+const WordCard = memo(({ item, index, t, isPlaying, isPracticeActiveCard, practiceCountdown, language, currentSubject, onPronounce, isHidden, isDictationRevealPhase, isSelected, onToggleSelect }) => {
+  let cardClasses = 'border-white/60 hover:border-indigo-200 hover:-translate-y-1 active:scale-95 active:rotate-2';
+  if (isPracticeActiveCard) { cardClasses = 'ring-4 ring-amber-400 border-amber-400 scale-[1.05] shadow-2xl z-30'; } 
+  else if (isPlaying) { cardClasses = 'border-indigo-400 scale-[1.03] ring-4 ring-indigo-50 z-20'; }
+
+  const isEnglishSubject = currentSubject === 'english';
+  const wordLength = item.word.length;
+  let textSizeClass = 'text-3xl sm:text-4xl lg:text-5xl';
+  if (isEnglishSubject) textSizeClass = 'text-xl sm:text-2xl lg:text-3xl';
+  else if (wordLength > 20) textSizeClass = 'text-xl sm:text-2xl lg:text-3xl';
+  else if (item.chars && item.chars.length >= 4) textSizeClass = 'text-2xl sm:text-3xl lg:text-4xl';
+
+  const cardLabel = isHidden ? t.hiddenCard : `${item.word}${item.translation ? `, ${item.translation}` : ''}. ${t.readAloud}`;
+  const selectionLabel = (isSelected ? t.deselectCard : t.selectCard).replace('{n}', index + 1);
+  const handleKeyDown = (event) => {
+    if (event.target !== event.currentTarget) return;
+    if (isActivationKey(event)) {
+      event.preventDefault();
+      onPronounce(item, false, null, event);
+    }
+  };
+
+  return (
+    <div
+      id={`word-card-${item.word}`}
+      role="button"
+      tabIndex={0}
+      aria-label={cardLabel}
+      onKeyDown={handleKeyDown}
+      onClick={(e) => onPronounce(item, false, null, e)}
+      className={`group relative flex flex-col p-3 sm:p-6 bg-white/80 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] border-2 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-2xl ${cardClasses}`}
+    >
+      <button
+        type="button"
+        onClick={(e) => { e.stopPropagation(); onToggleSelect(index, e); }}
+        aria-pressed={isSelected}
+        aria-label={selectionLabel}
+        className={`absolute top-2 left-2 sm:top-4 sm:left-4 font-black rounded-full w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center z-30 shadow-sm border cursor-pointer hover:scale-110 active:scale-95 transition-all text-[10px] sm:text-sm ${isSelected ? 'bg-emerald-500 text-white border-emerald-600 ring-[3px] ring-emerald-500/30' : 'bg-white text-slate-400 border-slate-100 hover:text-indigo-500 hover:bg-indigo-50'}`}
+      >
+        {index + 1}
+      </button>
+      {isPracticeActiveCard && (
+        <div aria-hidden="true" className={`absolute -top-3 -right-3 sm:-top-5 sm:-right-5 w-10 h-10 sm:w-14 sm:h-14 rounded-full flex flex-col items-center justify-center font-bold shadow-xl border-2 sm:border-4 border-white animate-bounce z-40 ${isDictationRevealPhase ? 'bg-emerald-500 text-white' : 'bg-amber-500 text-white'}`}>
+          {isDictationRevealPhase ? <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> : <><span className="text-sm sm:text-xl leading-none">{practiceCountdown}</span><span className="text-[8px] sm:text-[10px] leading-none">{t.seconds}</span></>}
+        </div>
+      )}
+      {item.chars && item.chars.length > 0 ? (
+        <div className={`relative z-10 grid ${item.chars.length === 1 ? 'grid-cols-1' : item.chars.length === 2 ? 'grid-cols-2' : item.chars.length === 3 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-4'} place-items-center gap-x-1.5 gap-y-2 sm:gap-3 mb-4 sm:mb-6 pt-3 sm:pt-4 pointer-events-none w-max mx-auto`}>
+          {item.chars.map((c, ci) => (<div key={ci} className={item.chars.length === 3 && ci === 2 ? 'col-span-2' : ''}><CharacterBox charItem={c} isPlaying={isPlaying} charIdx={ci} isHidden={isHidden} /></div>))}
+        </div>
+      ) : (
+        <div className="relative z-10 flex items-center justify-center min-h-[88px] sm:min-h-[120px] mb-4 sm:mb-6 pt-3 sm:pt-4 pointer-events-none w-full">
+          <span className={`${textSizeClass} font-extrabold text-slate-800 tracking-tight text-center px-2 break-words leading-tight`}>{isHidden ? '???' : item.word}</span>
+        </div>
+      )}
+      <div className="mt-auto flex items-center justify-center gap-1.5 sm:gap-3 pt-3 sm:pt-6 border-t border-slate-100 relative z-10 pointer-events-none">
+        <Volume2 className={`w-4 h-4 sm:w-5 sm:h-5 ${isPlaying ? 'text-indigo-600 animate-pulse' : isPracticeActiveCard ? 'text-amber-500 animate-pulse' : 'text-slate-400 group-hover:text-indigo-500'}`} />
+        <span className="font-extrabold text-sm sm:text-base md:text-xl text-slate-700">
+          {isHidden ? '???' : (isEnglishSubject ? item.translation : (language === 'en' ? item.word : item.translation))}
+        </span>
+      </div>
+    </div>
+  );
+});
+
+// ==========================================
+// --- 主應用程式 App ---
+// ==========================================
+
+function App() {
+  
+  // --- 基礎與語系狀態 ---
+  const [language, setLanguage] = useState('yue');
+  const t = UI_TEXT[language];
+  const [toastMsg, setToastMsg] = useState('');
+  const toastTimerRef = useRef(null);
+  const speechSeqRef = useRef(0);
+  const speechTimerRef = useRef(null);
+  const showToast = useCallback((message, duration = 3000) => {
+    setToastMsg(message);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToastMsg(''), duration);
+  }, []);
+
+  useEffect(() => {
+    window.__speechSpeed = 0.6;
+    return () => {
+      if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+      if (speechTimerRef.current) clearTimeout(speechTimerRef.current);
+      speechSeqRef.current++;
+    };
+  }, []);
+
+  useEffect(() => {
+    document.title = `${t.title} (${APP_VERSION})`;
+    document.documentElement.lang = language === 'en' ? 'en' : language === 'zh-CN' ? 'zh-CN' : 'zh-HK';
+  }, [language, t.title]);
+
+  // --- 學習設定狀態 ---
+  const [currentProfile, setCurrentProfile] = useState('Tony');
+  const [currentSubject, setCurrentSubject] = useState('chinese');
+  const availableChapters = (CHAPTERS[currentProfile] || []).filter(ch => ch.subject === currentSubject);
+  const [currentChapter, setCurrentChapter] = useState(availableChapters[0]?.id || '');
+  const currentVocabulary = VOCABULARY_DB[currentChapter] || [];
+  
+  // --- UI 與互動狀態 ---
+  const [selectedCardIndices, setSelectedCardIndices] = useState([]);
+  const [activeWord, setActiveWord] = useState(null);
+  const [homophoneTooltip, setHomophoneTooltip] = useState(null);
+  const [particles, setParticles] = useState([]);
+  const [isChangelogOpen, setIsChangelogOpen] = useState(false);
+  const [selectedLogMonth, setSelectedLogMonth] = useState('');
+  
+  // --- 課文朗讀狀態 ---
+  const [readingChapter, setReadingChapter] = useState(null);
+  const [readSentences, setReadSentences] = useState([]);
+  const [currentReadIndex, setCurrentReadIndex] = useState(-1);
+  const [activeWordIndex, setActiveWordIndex] = useState(null); 
+  const [readingMode, setReadingMode] = useState('word');
+  const [isPaused, setIsPaused] = useState(false);
+  const [speechSpeed, setSpeechSpeed] = useState(0.6);
+  const [chapterRepeatTimes, setChapterRepeatTimes] = useState(1);
+  const [currentReadingRound, setCurrentReadingRound] = useState(1);
+  const [isChapterReadingActive, setIsChapterReadingActive] = useState(false);
+  
+  const speedRef = useRef(speechSpeed);
+  const languageRef = useRef(language);
+  const subjectRef = useRef(currentSubject);
+  const isReadingRef = useRef(false);
+  const readingTokenRef = useRef(0);
+  const activeSentenceRef = useRef(null);
+  const currentReadIndexRef = useRef(-1);
+  const readSentencesRef = useRef([]);
+  const chapterRepeatTimesRef = useRef(1);
+  const currentChapterRepeatCountRef = useRef(0);
+
+  useEffect(() => { languageRef.current = language; }, [language]);
+  useEffect(() => { subjectRef.current = currentSubject; }, [currentSubject]);
+
+  // --- 章節練習狀態 ---
+  const [isChapterPracticeOpen, setIsChapterPracticeOpen] = useState(false);
+  const [activePracticeTab, setActivePracticeTab] = useState(0);
+  const [practiceInputs, setPracticeInputs] = useState({});
+  const [showPracticeAnswers, setShowPracticeAnswers] = useState(false);
+  const [individualReveals, setIndividualReveals] = useState({});
+  const [shuffledOptions, setShuffledOptions] = useState({});
+
+  // --- 單字抽查模式狀態 ---
+  const [isPracticeModalOpen, setIsPracticeModalOpen] = useState(false);
+  const [practiceType, setPracticeType] = useState('standard');
+  const [practiceRangeStart, setPracticeRangeStart] = useState(1);
+  const [practiceRangeEnd, setPracticeRangeEnd] = useState(1);
+  const [practiceOrder, setPracticeOrder] = useState('random'); 
+  const [practiceWaitTime, setPracticeWaitTime] = useState(5); 
+  const [practiceRepeatTimes, setPracticeRepeatTimes] = useState(2); 
+  const [practiceSessionRounds, setPracticeSessionRounds] = useState(1); 
+  const [practiceMode, setPracticeMode] = useState({
+    isActive: false, isDictation: false, revealedWords: [], originalWords: [], words: [], currentIndex: 0, countdown: 5, currentRound: 1, totalRounds: 1
+  });
+  const practiceTimerRef = useRef(null);
+
+
+
+  const toggleReveal = useCallback((id) => { setIndividualReveals(prev => ({...prev, [id]: !prev[id]})); }, []);
+
+  // --- 初始化與事件監聽 ---
+  const toggleCardSelection = useCallback((index) => {
+    setSelectedCardIndices(prev => prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]);
+  }, []);
+
+  useEffect(() => { setSelectedCardIndices([]); }, [currentChapter]);
+
+  useEffect(() => {
+    setActivePracticeTab(0); setPracticeInputs({}); setShowPracticeAnswers(false); setIndividualReveals({});
+    if (isChapterPracticeOpen && PRACTICE_DB[currentChapter]) {
+      const practiceList = Array.isArray(PRACTICE_DB[currentChapter]) ? PRACTICE_DB[currentChapter] : [PRACTICE_DB[currentChapter]];
+      const newShuffled = {};
+      practiceList.forEach((p, pIdx) => {
+        if (p.type === 'mixed_qa') {
+          p.sections.forEach((sec, sIdx) => {
+            if (sec.questions) { sec.questions.forEach((qItem, qIdx) => { if (qItem.options) newShuffled[`qa-${pIdx}-${sIdx}-${qIdx}`] = [...qItem.options].sort(() => Math.random() - 0.5); }); }
+            if (sec.options) newShuffled[`mc-${pIdx}-${sIdx}`] = [...sec.options].sort(() => Math.random() - 0.5);
+            if (sec.sentenceMaking && sec.sentenceMaking.options) newShuffled[`sm-${pIdx}-${sIdx}`] = [...sec.sentenceMaking.options].sort(() => Math.random() - 0.5);
+          });
+        }
+      });
+      setShuffledOptions(newShuffled);
+    }
+  }, [currentChapter, isChapterPracticeOpen]);
+
+  const handleDownloadSource = useCallback(() => {
+    const sourceContent = `/* 粵語詞彙練習 (Cantonese Vocabulary Practice) Version: ${APP_VERSION} */\nconst APP_VERSION = "${APP_VERSION}";\nconst PROFILES = ${JSON.stringify(PROFILES, null, 2)};\nconst CHANGELOG_DATA = ${JSON.stringify(CHANGELOG_DATA, null, 2)};\nconst VOCABULARY_DB = ${JSON.stringify(VOCABULARY_DB, null, 2)};\nconst CHAPTERS = ${JSON.stringify(CHAPTERS, null, 2)};\nconst PRACTICE_DB = ${JSON.stringify(PRACTICE_DB, null, 2)};\n`;
+    const blob = new Blob([sourceContent], { type: 'text/javascript;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a'); link.href = url; link.download = `Cantonese_Vocab_App_Data_${APP_VERSION}.js`;
+    document.body.appendChild(link); link.click(); document.body.removeChild(link); URL.revokeObjectURL(url);
+    showToast(t.downloadSuccess, 4000);
+  }, [t.downloadSuccess]);
+
+  const logMonths = [...new Set(CHANGELOG_DATA.map(log => log.date.substring(0, 7)))].sort().reverse();
+  const currentLogMonth = selectedLogMonth || logMonths[0];
+  const filteredLogs = CHANGELOG_DATA.filter(log => log.date.startsWith(currentLogMonth));
+
+  useEffect(() => {
+    const closeTooltip = () => setHomophoneTooltip(null);
+    window.addEventListener('click', closeTooltip); window.addEventListener('scroll', closeTooltip, true); 
+    return () => { window.removeEventListener('click', closeTooltip); window.removeEventListener('scroll', closeTooltip, true); };
+  }, []);
+
+  const spawnParticles = useCallback((e, symbols) => {
+    if (!e || prefersReducedMotion()) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX || (e.touches && e.touches[0].clientX)) || rect.left + rect.width / 2;
+    const y = (e.clientY || (e.touches && e.touches[0].clientY)) || rect.top + rect.height / 2;
+    const newParticles = Array.from({ length: 4 }).map(() => ({ id: Math.random().toString(36).substr(2, 9), x, y, symbol: symbols[Math.floor(Math.random() * symbols.length)], tx: (Math.random() - 0.5) * 120, ty: -50 - Math.random() * 80, rot: (Math.random() - 0.5) * 90 }));
+    setParticles(prev => [...prev, ...newParticles]); setTimeout(() => { setParticles(prev => prev.filter(p => !newParticles.find(np => np.id === p.id))); }, 800);
+  }, []);
+
+  useEffect(() => { setPracticeRangeStart(1); setPracticeRangeEnd(currentVocabulary.length > 0 ? currentVocabulary.length : 1); }, [currentChapter, currentVocabulary.length]);
+
+  useEffect(() => {
+    const modalOpen = isPracticeModalOpen || isChangelogOpen || isChapterPracticeOpen;
+    if (!modalOpen) return;
+    const previousFocus = document.activeElement;
+    const dialog = document.querySelector('[role="dialog"]');
+    if (!dialog) return;
+    const getFocusable = () => Array.from(dialog.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(el => el.offsetParent !== null || el === document.activeElement);
+    const initialFocus = getFocusable();
+    (initialFocus[0] || dialog).focus();
+    const handleModalKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        if (isChapterPracticeOpen) setIsChapterPracticeOpen(false);
+        else if (isPracticeModalOpen) setIsPracticeModalOpen(false);
+        else if (isChangelogOpen) setIsChangelogOpen(false);
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const items = getFocusable();
+      if (items.length === 0) { event.preventDefault(); return; }
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', handleModalKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleModalKeyDown);
+      if (previousFocus && previousFocus.isConnected) previousFocus.focus?.();
+    };
+  }, [isPracticeModalOpen, isChangelogOpen, isChapterPracticeOpen]);
+
+  const handleProfileChange = useCallback((newProfile) => {
+    setCurrentProfile(newProfile);
+    const newChapters = CHAPTERS[newProfile]?.filter(ch => ch.subject === currentSubject) || [];
+    setCurrentChapter(newChapters.length > 0 ? newChapters[0].id : '');
+  }, [currentSubject]);
+
+  const handleSubjectChange = useCallback((newSubject) => {
+    setCurrentSubject(newSubject);
+    const newChapters = CHAPTERS[currentProfile]?.filter(ch => ch.subject === newSubject) || [];
+    setCurrentChapter(newChapters.length > 0 ? newChapters[0].id : '');
+  }, [currentProfile]);
+
+  useEffect(() => { if (activeSentenceRef.current) activeSentenceRef.current.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'center' }); }, [currentReadIndex]);
+  useEffect(() => { speedRef.current = speechSpeed; }, [speechSpeed]);
+
+  useEffect(() => {
+    if (!('speechSynthesis' in window)) return;
+    const synth = window.speechSynthesis;
+    const loadVoices = () => synth.getVoices();
+    loadVoices();
+    if (synth.addEventListener) {
+      synth.addEventListener('voiceschanged', loadVoices);
+      return () => synth.removeEventListener('voiceschanged', loadVoices);
+    }
+    synth.onvoiceschanged = loadVoices;
+    return () => { if (synth.onvoiceschanged === loadVoices) synth.onvoiceschanged = null; };
+  }, []);
+
+ 
+
+  // --- 互動功能方法 ---
+
+  const handlePronounceRef = useRef();
+  const handlePronounce = (item, isContentReading = false, customText = null, e = null, onEndCallback = null) => {
+    if (e) {
+      e.stopPropagation();
+      spawnParticles(e, ['✨', '🎵', '⭐', '🎈']);
+    }
+    if (isReadingRef.current) stopChapterReading();
+    const appLanguage = languageRef.current;
+    const isEnglishSubject = subjectRef.current === 'english';
+    let defaultText = '';
+    if (item) { defaultText = item.pronounceText || (isEnglishSubject ? item.word : (appLanguage === 'en' ? (item.translation || item.word).split('/')[0].trim() : item.word)); }
+    const textToSpeak = customText ? customText : defaultText;
+    const targetId = item?.word || 'reading';
+    const seq = ++speechSeqRef.current;
+    if (speechTimerRef.current) {
+      clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.resume(); window.speechSynthesis.cancel();
+      const forceEnglish = isEnglishSubject || (appLanguage === 'en' && !isContentReading);
+      const utterance = getVoiceUtterance(textToSpeak, isContentReading ? speedRef.current : 1.0, forceEnglish, appLanguage);
+      if (!utterance) { if (onEndCallback) onEndCallback(); return; }
+      let finished = false;
+      const finish = () => { if (finished) return; finished = true; if (onEndCallback) onEndCallback(); };
+      utterance.onstart = () => { if (seq === speechSeqRef.current) setActiveWord(targetId); };
+      utterance.onend = () => { if (seq === speechSeqRef.current) setActiveWord(null); finish(); };
+      utterance.onerror = () => { if (seq === speechSeqRef.current) setActiveWord(null); finish(); };
+      speechTimerRef.current = setTimeout(() => {
+        speechTimerRef.current = null;
+        if (seq !== speechSeqRef.current) return;
+        window.speechSynthesis.speak(utterance);
+      }, 50);
+    } else {
+      showToast(UI_TEXT[appLanguage].noSpeech);
+      if (onEndCallback) onEndCallback();
+    }
+  };
+  handlePronounceRef.current = handlePronounce;
+  const stableOnPronounce = useCallback((...args) => handlePronounceRef.current(...args), []);
+
+
+
+  const startPractice = (startIdx, endIdx) => {
+    if (!('speechSynthesis' in window)) {
+      showToast(t.noSpeech);
+      return;
+    }
+    stopChapterReading();
+    let rangeVocab = selectedCardIndices.length > 0 ? [...selectedCardIndices].sort((a, b) => a - b).map(idx => currentVocabulary[idx]) : currentVocabulary.slice(startIdx - 1, endIdx);
+    rangeVocab = rangeVocab.filter(Boolean);
+    if (rangeVocab.length === 0) {
+      showToast(t.emptyVocabulary);
+      return;
+    }
+    speechSeqRef.current++;
+    if (speechTimerRef.current) {
+      clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+    window.speechSynthesis.resume(); window.speechSynthesis.cancel(); window.speechSynthesis.speak(new SpeechSynthesisUtterance(''));
+    let finalWords = [...rangeVocab];
+    if (practiceOrder === 'random') finalWords.sort(() => 0.5 - Math.random());
+    setPracticeMode({ isActive: true, isDictation: practiceType === 'dictation', revealedWords: [], originalWords: rangeVocab, words: finalWords, currentIndex: 0, countdown: practiceWaitTime, currentRound: 1, totalRounds: practiceSessionRounds });
+    setIsPracticeModalOpen(false);
+  };
+
+  const stopPractice = useCallback(() => {
+    setPracticeMode(prev => ({...prev, isActive: false}));
+    if (practiceTimerRef.current) clearInterval(practiceTimerRef.current);
+    speechSeqRef.current++;
+    if (speechTimerRef.current) {
+      clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    setActiveWord(null);
+  }, []);
+
+  useEffect(() => {
+    let isSubscribed = true;
+    if (!practiceMode.isActive) return;
+    if (practiceMode.currentIndex >= practiceMode.words.length) {
+       if (practiceMode.currentRound < practiceMode.totalRounds) {
+           let nextWords = [...practiceMode.originalWords];
+           if (practiceOrder === 'random') nextWords.sort(() => 0.5 - Math.random());
+           setPracticeMode(prev => ({ ...prev, words: nextWords, currentIndex: 0, currentRound: prev.currentRound + 1, countdown: practiceWaitTime, revealedWords: [] }));
+       } else { setPracticeMode(prev => ({...prev, isActive: false})); }
+       return;
+    }
+
+    const currentWord = practiceMode.words[practiceMode.currentIndex];
+    setTimeout(() => {
+        const el = document.getElementById(`word-card-${currentWord.word}`);
+        if (el) { const y = el.getBoundingClientRect().top + window.scrollY - (window.innerHeight / 2) + (el.offsetHeight / 2); window.scrollTo({ top: y, behavior: prefersReducedMotion() ? 'auto' : 'smooth' }); }
+    }, 300);
+
+    let timeLeft = practiceWaitTime;
+    setPracticeMode(prev => ({...prev, countdown: timeLeft}));
+    if (practiceTimerRef.current) clearInterval(practiceTimerRef.current);
+
+    if (practiceMode.isDictation) {
+        let playCount = 0;
+        const playAudioSequence = () => {
+            if (!isSubscribed) return;
+            playCount++;
+            handlePronounce(currentWord, false, null, null, () => {
+                if (!isSubscribed) return;
+                if (playCount < practiceRepeatTimes) { setTimeout(playAudioSequence, 1000); } else { startDictationCountdown(); }
+            });
+        };
+        const startDictationCountdown = () => {
+            practiceTimerRef.current = setInterval(() => {
+                timeLeft -= 1; if (!isSubscribed) return;
+                setPracticeMode(p => ({...p, countdown: timeLeft}));
+                if (timeLeft <= 0) {
+                    clearInterval(practiceTimerRef.current);
+                    setPracticeMode(p => ({ ...p, revealedWords: [...p.revealedWords, currentWord.word] }));
+                    setTimeout(() => { if (isSubscribed) setPracticeMode(p => ({...p, currentIndex: p.currentIndex + 1, countdown: practiceWaitTime})); }, 3000);
+                }
+            }, 1000);
+        };
+        playAudioSequence();
+    } else {
+        practiceTimerRef.current = setInterval(() => {
+          timeLeft -= 1; if (!isSubscribed) return;
+          setPracticeMode(prev => ({...prev, countdown: timeLeft}));
+          if (timeLeft <= 0) {
+            clearInterval(practiceTimerRef.current);
+            let playCount = 0;
+            const playNext = () => {
+                if (!isSubscribed) return;
+                playCount++;
+                handlePronounce(currentWord, false, null, null, () => {
+                    if (!isSubscribed) return;
+                    if (playCount < practiceRepeatTimes) { setTimeout(playNext, 1000); } else { setTimeout(() => { if (isSubscribed) setPracticeMode(p => ({...p, currentIndex: p.currentIndex + 1, countdown: practiceWaitTime})); }, 1500); }
+                });
+            };
+            playNext(); 
+          }
+        }, 1000);
+    }
+    return () => { isSubscribed = false; clearInterval(practiceTimerRef.current); };
+  }, [practiceMode.isActive, practiceMode.currentIndex, practiceMode.words, practiceMode.currentRound, practiceMode.totalRounds, practiceOrder, practiceRepeatTimes, practiceWaitTime, practiceMode.isDictation]);
+
+  const stopChapterReading = useCallback(() => {
+    readingTokenRef.current++;
+    speechSeqRef.current++;
+    if (speechTimerRef.current) {
+      clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+    isReadingRef.current = false; setIsPaused(false); setIsChapterReadingActive(false); setActiveWordIndex(null); setHomophoneTooltip(null); 
+    if ('speechSynthesis' in window) { window.speechSynthesis.resume(); window.speechSynthesis.cancel(); }
+    setCurrentReadIndex(-1); currentReadIndexRef.current = -1; currentChapterRepeatCountRef.current = 0; setCurrentReadingRound(1);
+  }, []);
+
+  useEffect(() => { stopChapterReading(); setReadingChapter(null); }, [currentChapter, stopChapterReading]);
+
+  const playChunk = (index) => {
+    if (!isReadingRef.current || !('speechSynthesis' in window)) {
+      setCurrentReadIndex(-1); currentReadIndexRef.current = -1; isReadingRef.current = false; setIsPaused(false); setIsChapterReadingActive(false); setActiveWordIndex(null); return;
+    }
+    if (index >= readSentencesRef.current.length) {
+      currentChapterRepeatCountRef.current += 1;
+      if (currentChapterRepeatCountRef.current < chapterRepeatTimesRef.current) {
+        setCurrentReadIndex(-1); setCurrentReadingRound(currentChapterRepeatCountRef.current + 1); setTimeout(() => { if (isReadingRef.current) playChunk(0); }, 1000); return;
+      } else {
+        setCurrentReadIndex(-1); currentReadIndexRef.current = -1; isReadingRef.current = false; setIsPaused(false); setIsChapterReadingActive(false); setActiveWordIndex(null); currentChapterRepeatCountRef.current = 0; setCurrentReadingRound(1); return;
+      }
+    }
+    setCurrentReadIndex(index); currentReadIndexRef.current = index; setActiveWordIndex(null);
+    const chunk = readSentencesRef.current[index];
+    const utterance = getVoiceUtterance(chunk, speedRef.current, subjectRef.current === 'english', languageRef.current);
+    if (!utterance) { if (isReadingRef.current) playChunk(index + 1); return; }
+    utterance.onend = () => { if (isReadingRef.current) playChunk(index + 1); };
+    utterance.onerror = (e) => { if (e.error !== 'interrupted' && e.error !== 'canceled' && isReadingRef.current) playChunk(index + 1); };
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const readSingleSentence = (index, text, e) => {
+    if (e) { e.stopPropagation(); spawnParticles(e, ['💬', '🗣️', '✨', '🎵']); }
+    if (!('speechSynthesis' in window)) { showToast(t.noSpeech); return; }
+    readingTokenRef.current++;
+    isReadingRef.current = false; setIsPaused(false); window.speechSynthesis.cancel(); 
+    setCurrentReadIndex(index); currentReadIndexRef.current = index; setActiveWordIndex(null);
+    const utterance = getVoiceUtterance(text, speedRef.current, subjectRef.current === 'english', languageRef.current);
+    if (!utterance) return;
+    utterance.onend = () => { if (currentReadIndexRef.current === index && !isReadingRef.current) { setCurrentReadIndex(-1); currentReadIndexRef.current = -1; } };
+    utterance.onerror = (e) => { if (e.error !== 'interrupted' && e.error !== 'canceled' && currentReadIndexRef.current === index && !isReadingRef.current) { setCurrentReadIndex(-1); currentReadIndexRef.current = -1; } };
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const readSingleWord = (idx, wIdx, word, e) => {
+    if (e) {
+      e.stopPropagation(); spawnParticles(e, ['💬', '🗣️', '✨', '🎵']);
+      const rect = e.currentTarget.getBoundingClientRect();
+      const charsWithHomophones = Array.from(word).map(c => ({ char: c, homophones: HOMOPHONE_DB[c] || [] })).filter(item => item.homophones.length > 0);
+      if (charsWithHomophones.length > 0) setHomophoneTooltip({ wordId: `s${idx}-w${wIdx}`, x: rect.left + rect.width / 2, y: rect.top, data: charsWithHomophones }); else setHomophoneTooltip(null);
+    }
+    if (!('speechSynthesis' in window)) { showToast(t.noSpeech); return; }
+    readingTokenRef.current++;
+    isReadingRef.current = false; setIsPaused(false); window.speechSynthesis.cancel();
+    setCurrentReadIndex(idx); currentReadIndexRef.current = idx; const wordId = `s${idx}-w${wIdx}`; setActiveWordIndex(wordId);
+    const utterance = getVoiceUtterance(word, speedRef.current, subjectRef.current === 'english', languageRef.current);
+    if (!utterance) { setActiveWordIndex(prev => prev === wordId ? null : prev); return; }
+    utterance.onend = () => { setActiveWordIndex(prev => prev === wordId ? null : prev); if (currentReadIndexRef.current === idx && !isReadingRef.current) { setCurrentReadIndex(-1); currentReadIndexRef.current = -1; } };
+    utterance.onerror = () => { setActiveWordIndex(prev => prev === wordId ? null : prev); if (currentReadIndexRef.current === idx && !isReadingRef.current) { setCurrentReadIndex(-1); currentReadIndexRef.current = -1; } };
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const handleSpeedChange = (e) => {
+    const newSpeed = parseFloat(e.target.value); 
+    setSpeechSpeed(newSpeed); 
+    speedRef.current = newSpeed; 
+    window.__speechSpeed = newSpeed;
+    if (isReadingRef.current && currentReadIndexRef.current !== -1) {
+      const currentIndex = currentReadIndexRef.current;
+      const token = ++readingTokenRef.current;
+      isReadingRef.current = false; 
+      if ('speechSynthesis' in window) { window.speechSynthesis.resume(); window.speechSynthesis.cancel(); }
+      setIsPaused(false); 
+      setTimeout(() => {
+        if (token !== readingTokenRef.current) return;
+        isReadingRef.current = true;
+        playChunk(currentIndex);
+      }, 50);
+    }
+  };
+
+  const handlePauseToggle = useCallback(() => {
+    if (!('speechSynthesis' in window)) return;
+    if (isPaused || window.speechSynthesis.paused) { window.speechSynthesis.resume(); setIsPaused(false); } else { window.speechSynthesis.pause(); setIsPaused(true); }
+  }, [isPaused]);
+
+  const handleReadChapter = () => {
+    const chapter = availableChapters.find(ch => ch.id === currentChapter);
+    if (!chapter || !chapter.content || !chapter.content.trim()) {
+      showToast(t.noContent);
+      return;
+    }
+    if (!('speechSynthesis' in window)) {
+      showToast(t.noSpeech);
+      return;
+    }
+    speechSeqRef.current++;
+    if (speechTimerRef.current) {
+      clearTimeout(speechTimerRef.current);
+      speechTimerRef.current = null;
+    }
+    const token = ++readingTokenRef.current;
+    setReadingChapter(chapter);
+    const chunks = chapter.content.match(/[^，。！？；、：\n.!?]+[，。！？；、：\n.!?]?/g) || [chapter.content];
+    setReadSentences(chunks); readSentencesRef.current = chunks;
+    setCurrentReadIndex(-1); currentReadIndexRef.current = -1; currentChapterRepeatCountRef.current = 0; setCurrentReadingRound(1); setIsPaused(false); setIsChapterReadingActive(true);
+    isReadingRef.current = false;
+    window.speechSynthesis.resume(); window.speechSynthesis.cancel();
+    setTimeout(() => {
+      if (token !== readingTokenRef.current) return;
+      isReadingRef.current = true;
+      playChunk(0);
+    }, 50);
+  };
+
+  // ==========================================
+  // --- UI 渲染區塊 ---
+  // ==========================================
+
+  return (
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans pb-24 relative overflow-hidden">
+      <style>{`@keyframes float-particle { 0% { transform: translate(-50%, -50%) scale(0.5) rotate(0deg); opacity: 1; } 100% { transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.5) rotate(var(--rot)); opacity: 0; } } .animate-float-particle { animation: float-particle 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; } .hide-scrollbar::-webkit-scrollbar { display: none; } .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
+      
+      {/* 粒子特效與背景 */}
+      {particles.map(p => (<div key={p.id} aria-hidden="true" className="fixed pointer-events-none z-[100] animate-float-particle text-2xl md:text-3xl drop-shadow-sm" style={{ left: p.x, top: p.y, '--tx': `${p.tx}px`,'--ty':`${p.ty}px`, '--rot': `${p.rot}deg` }}>{p.symbol}</div>))}
+      <div aria-hidden="true" className="fixed inset-0 pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-purple-400/20 blur-[100px]"></div>
+        <div className="absolute bottom-[-10%] left-[20%] w-[600px] h-[600px] rounded-full bg-pink-400/20 blur-[120px]"></div>
+      </div>
+
+      {/* 訊息提示 (Toast) */}
+      {toastMsg && (
+        <div role="status" aria-live="polite" aria-atomic="true" className="fixed top-24 left-1/2 transform -translate-x-1/2 z-[100] bg-indigo-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-2 font-bold animate-in fade-in slide-in-from-top-10">
+          <CheckCircle size={20} aria-hidden="true" />{toastMsg}
+        </div>
+      )}
+
+      {/* 頂部導航列 */}
+      <nav aria-label={t.mainNav} className="fixed top-0 left-0 right-0 z-[60] bg-white/90 backdrop-blur-xl border-b border-slate-200/60 shadow-md px-2 sm:px-4 py-2 sm:py-3 flex flex-row items-center justify-start md:justify-between gap-2 sm:gap-4 transition-all overflow-x-auto hide-scrollbar flex-nowrap whitespace-nowrap">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-2 flex-nowrap w-2 sm:w-8"></div>
+        
+        {/* 核心設定控制區 */}
+        <div className="flex shrink-0 items-center justify-center gap-1.5 sm:gap-3 flex-nowrap">
+          {/* Profile 切換 */}
+          <div role="group" aria-label={t.profileLabel} className="inline-flex bg-slate-100/80 rounded-full p-1 shadow-inner border border-slate-200/60">
+            {PROFILES.map(p => (
+              <button key={p.id} onClick={() => handleProfileChange(p.id)} aria-pressed={currentProfile === p.id} className={`flex items-center gap-1 px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-semibold transition-all ${currentProfile === p.id ? 'bg-pink-50 text-pink-600 shadow-md' : 'text-slate-500 hover:bg-slate-200'}`}>
+                <User size={12} aria-hidden="true" className={`sm:w-3.5 sm:h-3.5 ${currentProfile === p.id ? 'text-pink-600' : 'text-pink-400'}`} /> 
+                <span className="hidden sm:inline">{p.name}</span><span className="sm:hidden">{p.name.charAt(0)}</span>
+              </button>
+            ))}
+          </div>
+          
+          {/* 科目切換 */}
+          <div role="group" aria-label={t.subjectLabel} className="inline-flex bg-slate-100/80 rounded-full p-1 shadow-inner border border-slate-200/60">
+            {[{id: 'chinese', label: '中文', short: '中'}, {id: 'english', label: 'English', short: 'En'}, {id: 'gs', label: '常識', short: '常'}].map(s => (
+              <button key={s.id} onClick={() => handleSubjectChange(s.id)} aria-pressed={currentSubject === s.id} className={`flex items-center gap-1 px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-semibold transition-all ${currentSubject === s.id ? 'bg-teal-500 text-white shadow-md' : 'text-slate-500 hover:bg-slate-200'}`}>
+                <Languages size={12} aria-hidden="true" className={`sm:w-3.5 sm:h-3.5 ${currentSubject === s.id ? 'text-white' : 'text-teal-500'}`} /> 
+                <span className="hidden sm:inline">{s.label}</span><span className="sm:hidden">{s.short}</span>
+              </button>
+            ))}
+          </div>
+          
+          {/* 章節選單 */}
+          <div className="relative inline-flex bg-slate-100/80 rounded-full px-3 py-1 sm:px-5 sm:py-1.5 shadow-inner border border-slate-200/60 items-center cursor-pointer hover:bg-white transition-colors">
+             <BookOpen size={12} aria-hidden="true" className="sm:w-3.5 sm:h-3.5 text-indigo-500 mr-1 sm:mr-2 flex-shrink-0" />
+             <select aria-label={t.selectChapter} value={currentChapter} onChange={(e) => setCurrentChapter(e.target.value)} className="bg-transparent outline-none appearance-none pr-4 sm:pr-6 font-semibold text-slate-700 cursor-pointer text-[10px] sm:text-sm max-w-[80px] sm:max-w-[200px] truncate">
+               {availableChapters.map(ch => (<option key={ch.id} value={ch.id}>{ch.title}</option>))}
+             </select>
+             <ChevronDown size={12} aria-hidden="true" className="absolute right-2 sm:right-3 text-slate-400 pointer-events-none" />
+          </div>
+          
+          {/* 語系切換 */}
+          <div role="group" aria-label={t.languageLabel} className="inline-flex bg-slate-100/80 rounded-full p-1 shadow-inner border border-slate-200/60">
+            {[{id:'yue',label:'粵語', short:'粵'},{id:'zh-CN',label:'普通话', short:'普'},{id:'en',label:'English', short:'En'}].map(l => (
+              <button key={l.id} onClick={() => setLanguage(l.id)} aria-pressed={language===l.id} className={`px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full text-[10px] sm:text-sm font-semibold transition-all ${language===l.id?'bg-indigo-500 text-white shadow-md':'text-slate-500 hover:bg-slate-200'}`}>
+                <span className="hidden sm:inline">{l.label}</span><span className="sm:hidden">{l.short}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        {/* 右側更新日誌按鈕 */}
+        <div className="flex shrink-0 flex-nowrap">
+          <button onClick={() => setIsChangelogOpen(true)} aria-label={`${t.changelog} ${APP_VERSION}`} className="flex items-center gap-1 text-[10px] sm:text-xs font-mono text-slate-500 bg-slate-100 hover:bg-white px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-full border border-slate-200 shadow-sm transition-all hover:scale-105 hover:text-indigo-600 hover:border-indigo-300">
+            <History size={12} aria-hidden="true" /> <span className="hidden sm:inline">{APP_VERSION}</span>
+          </button>
+        </div>
+      </nav>
+
+      {/* 頁面主要內容 */}
+      <main className="max-w-6xl mx-auto relative z-10 px-4 md:px-8 pt-20 sm:pt-24 lg:pt-28">
+        
+        {/* 標題區 */}
+        <header className="mb-10 flex flex-row flex-wrap items-center justify-start gap-3 sm:gap-4 text-left">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-pink-500 shrink-0">{t.title}</h1>
+          <p className="text-slate-600 text-xs md:text-sm bg-white/50 backdrop-blur-sm px-4 py-1.5 rounded-full inline-block border border-white/40 shadow-sm m-0">{t.subtitle}</p>
+        </header>
+
+        {/* 主要功能按鈕列 */}
+        <div className="flex flex-wrap justify-center items-center gap-4 mb-8">
+          <button onClick={handleReadChapter} className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-4 rounded-full shadow-lg hover:scale-105 transition-all text-base md:text-lg font-bold">
+            <Volume2 size={24} aria-hidden="true" /> {t.readChapter}
+          </button>
+          <button onClick={() => setIsPracticeModalOpen(true)} disabled={currentVocabulary.length === 0 || practiceMode.isActive} className={`flex items-center justify-center gap-2 px-6 py-4 rounded-full shadow-lg transition-all text-base md:text-lg font-bold ${currentVocabulary.length === 0 || practiceMode.isActive ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-amber-500 text-white hover:bg-amber-600 hover:scale-105'}`}>
+            <Timer size={24} aria-hidden="true" /> {t.practiceMode}
+          </button>
+          <button onClick={() => setIsChapterPracticeOpen(true)} disabled={!PRACTICE_DB[currentChapter]} className={`flex items-center justify-center gap-2 px-6 py-4 rounded-full shadow-lg transition-all text-base md:text-lg font-bold ${!PRACTICE_DB[currentChapter] ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-teal-500 text-white hover:bg-teal-600 hover:scale-105'}`}>
+            <PenTool size={24} aria-hidden="true" /> {t.chapterPractice || '章節練習'}
+          </button>
+          <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-full shadow-lg border-2 border-indigo-50/50 flex-grow sm:flex-grow-0 md:ml-2">
+            <Volume2 size={20} aria-hidden="true" className="text-indigo-400" />
+            <span className="text-sm md:text-base font-bold text-slate-600 whitespace-nowrap">{t.speedLabel}</span>
+            <input type="range" aria-label={t.speedLabel} aria-valuetext={`${speechSpeed.toFixed(1)}x`} min="0.2" max="1.5" step="0.1" value={speechSpeed} onChange={handleSpeedChange} className="w-24 md:w-32 accent-indigo-500 cursor-pointer" />
+            <span className="text-sm md:text-base font-mono text-indigo-600 font-bold w-10 text-right">{speechSpeed.toFixed(1)}x</span>
+          </div>
+        </div>
+
+        {/* 課文朗讀視窗 */}
+        {readingChapter && (
+          <div role="region" aria-label={readingChapter.title} className="bg-white p-6 md:p-8 rounded-3xl shadow-xl border-4 border-amber-100 mb-12 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-4 relative">
+             <div aria-hidden="true" className="absolute -top-8 -left-4 text-6xl drop-shadow-lg animate-bounce" style={{animationDuration: '3s'}}>🐦</div>
+             <div aria-hidden="true" className="absolute -bottom-6 -right-2 text-6xl drop-shadow-lg">🌿</div>
+             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-amber-100 pb-4 relative z-10">
+               <h3 className="text-2xl md:text-3xl font-extrabold text-amber-800 flex items-center gap-3">
+                 <div className="bg-amber-100 p-2 rounded-2xl shadow-sm"><BookOpen className="text-amber-600" size={28} /></div>
+                 {readingChapter.title}
+               </h3>
+               
+               {/* 課文控制列 */}
+               <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                  <div role="group" aria-label={`${t.wordMode} / ${t.sentenceMode}`} className="flex items-center gap-1 bg-amber-50 p-1 rounded-full border border-amber-200/60 shadow-inner">
+                    <button onClick={() => setReadingMode('word')} aria-pressed={readingMode === 'word'} className={`px-4 py-1.5 rounded-full text-xs md:text-sm font-bold transition-all ${readingMode === 'word' ? 'bg-white shadow text-amber-600' : 'text-amber-700/60 hover:text-amber-700'}`}>{t.wordMode}</button>
+                    <button onClick={() => setReadingMode('sentence')} aria-pressed={readingMode === 'sentence'} className={`px-4 py-1.5 rounded-full text-xs md:text-sm font-bold transition-all ${readingMode === 'sentence' ? 'bg-white shadow text-amber-600' : 'text-amber-700/60 hover:text-amber-700'}`}>{t.sentenceMode}</button>
+                  </div>
+                  <div className="flex items-center gap-2 bg-amber-50 px-4 py-2 rounded-full border border-amber-200/60 shadow-inner flex-grow md:flex-grow-0">
+                    <span className="text-sm font-bold text-amber-700/70">{t.repeatLabel.replace('：', '')}</span>
+                    <div className="flex items-center gap-1.5 ml-1">
+                      <button aria-label={`${t.repeatLabel} - 1`} onClick={() => { setChapterRepeatTimes(p => { const v = Math.max(1, p - 1); chapterRepeatTimesRef.current = v; return v; }); }} className="w-6 h-6 flex items-center justify-center rounded-full bg-amber-200 text-amber-700 hover:bg-amber-300 transition-colors shadow-sm"><Minus size={14} aria-hidden="true" /></button>
+                      <span className="text-sm font-black text-amber-700 w-6 text-center">{chapterRepeatTimes}</span>
+                      <button aria-label={`${t.repeatLabel} + 1`} onClick={() => { setChapterRepeatTimes(p => { const v = Math.min(100, p + 1); chapterRepeatTimesRef.current = v; return v; }); }} className="w-6 h-6 flex items-center justify-center rounded-full bg-amber-200 text-amber-700 hover:bg-amber-300 transition-colors shadow-sm"><Plus size={14} aria-hidden="true" /></button>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={handleReadChapter} aria-label={t.readChapter} className="p-3 bg-amber-100 text-amber-600 rounded-full hover:bg-amber-200 transition-colors shadow-sm"><Volume2 size={20} aria-hidden="true" /></button>
+                    <button onClick={handlePauseToggle} disabled={currentReadIndex === -1 && !isPaused} aria-label={isPaused ? t.resumeReading : t.pauseReading} className={`p-3 rounded-full transition-colors shadow-sm ${currentReadIndex === -1 && !isPaused ? 'bg-slate-100 text-slate-300' : 'bg-orange-100 text-orange-600 hover:bg-orange-200'}`}>{isPaused ? <Play size={20} aria-hidden="true" className="fill-current ml-0.5" /> : <Pause size={20} aria-hidden="true" className="fill-current" />}</button>
+                    <button onClick={stopChapterReading} aria-label={t.stopReading} className="p-3 bg-rose-100 text-rose-600 rounded-full hover:bg-rose-200 transition-colors shadow-sm"><Square size={20} aria-hidden="true" className="fill-current" /></button>
+                    <button onClick={() => { stopChapterReading(); setReadingChapter(null); }} aria-label={t.close} className="p-3 bg-slate-100 text-slate-400 hover:text-slate-600 hover:bg-slate-200 rounded-full transition-colors shadow-sm"><X size={20} aria-hidden="true" /></button>
+                  </div>
+               </div>
+             </div>
+             
+             {/* 課文閱讀內容 */}
+             <div className="bg-[#fdfaf3] p-6 md:p-12 rounded-2xl border-2 border-amber-50 shadow-inner max-h-[65vh] overflow-y-auto relative overflow-hidden">
+                {readingChapter.bgImage && (<div aria-hidden="true" className="absolute inset-0 z-0 opacity-25 pointer-events-none mix-blend-multiply" style={{ backgroundImage: `url('${readingChapter.bgImage}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />)}
+                <div aria-hidden="true" className="absolute top-8 left-6 text-4xl opacity-30 select-none pointer-events-none -rotate-12 z-0">🍃</div>
+                <div aria-hidden="true" className="absolute bottom-10 right-10 text-5xl opacity-30 select-none pointer-events-none rotate-12 z-0">🌸</div>
+                <div aria-hidden="true" className="absolute top-1/3 right-6 text-3xl opacity-30 select-none pointer-events-none animate-pulse z-0">🦋</div>
+                <div aria-hidden="true" className="absolute bottom-1/4 left-4 text-3xl opacity-30 select-none pointer-events-none scale-x-[-1] z-0">🐛</div>
+               
+               <p className="text-4xl md:text-5xl lg:text-6xl font-serif leading-[1.8] md:leading-[1.8] tracking-wide indent-[2em] text-justify relative z-10 text-slate-700">
+                 {readSentences.length > 0 ? (
+                   readSentences.map((sentence, idx) => {
+                     const isCurrentSentence = currentReadIndex === idx;
+                     const isPastSentence = currentReadIndex > idx && currentReadIndex !== -1 && isReadingRef.current;
+                     const sentenceColorClass = isCurrentSentence 
+                        ? (isPaused ? 'text-orange-600 bg-orange-100/70 font-bold shadow-sm' : 'text-amber-700 bg-amber-200/60 font-bold shadow-sm') 
+                        : isPastSentence ? 'text-slate-400' : 'text-slate-700';
+                     
+                     if (readingMode === 'sentence') {
+                       return (
+                         <span key={idx} ref={isCurrentSentence ? activeSentenceRef : null} role="button" tabIndex={0} title={t.readSentence} onClick={(e) => readSingleSentence(idx, sentence, e)} onKeyDown={(e) => { if (isActivationKey(e)) { e.preventDefault(); readSingleSentence(idx, sentence, e); } }} className={`cursor-pointer hover:bg-amber-100/50 active:bg-amber-200 transition-colors duration-200 rounded-xl px-1 ${sentenceColorClass}`}>
+                            {sentence}
+                          </span>
+                       );
+                     } else {
+                       const words = segmentChineseText(sentence);
+                       return (
+                         <span key={idx} ref={isCurrentSentence ? activeSentenceRef : null} className={`transition-colors duration-300 rounded-xl px-1 ${sentenceColorClass}`}>
+                           {words.map((word, wIdx) => {
+                             const wordId = `s${idx}-w${wIdx}`; 
+                             const isWordActive = activeWordIndex === wordId;
+                             return (
+                                <span key={wordId} role="button" tabIndex={0} title={t.readWord} onClick={(e) => readSingleWord(idx, wIdx, word, e)} onKeyDown={(e) => { if (isActivationKey(e)) { e.preventDefault(); readSingleWord(idx, wIdx, word, e); } }} className={`cursor-pointer active:bg-amber-300 transition-colors duration-200 rounded px-[2px] relative ${isWordActive ? 'bg-amber-400 text-amber-900 shadow-sm' : 'hover:bg-amber-200 hover:text-amber-800'}`}>
+                                  {word}
+                                </span>
+                             );
+                           })}
+                         </span>
+                       );
+                     }
+                   })
+                 ) : (
+                   <span className="text-slate-700">{readingChapter.content}</span>
+                 )}
+               </p>
+             </div>
+          </div>
+        )}
+        
+        {/* 同音字提示 (Tooltip) */}
+        {homophoneTooltip && (
+          <div role="tooltip" className="fixed z-[100] bg-white text-slate-800 p-3 sm:p-4 rounded-2xl shadow-2xl border border-indigo-100 flex flex-col gap-2 transform -translate-x-1/2 -translate-y-full pointer-events-none animate-in fade-in zoom-in-95 duration-200" style={{ left: homophoneTooltip.x, top: homophoneTooltip.y - 12 }}>
+            <div aria-hidden="true" className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white border-b border-r border-indigo-100 transform rotate-45"></div>
+            <div className="text-[10px] sm:text-xs font-bold text-indigo-500 uppercase tracking-widest mb-1 flex items-center gap-1.5 border-b border-indigo-50 pb-1.5">
+              <BookOpen size={12} aria-hidden="true" /> {t.homophones}
+            </div>
+            {homophoneTooltip.data.map((item, i) => (
+              <div key={i} className="flex items-center gap-2 sm:gap-3 py-1">
+                <span className="text-sm sm:text-lg font-bold text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded-lg border border-indigo-100/50 shadow-sm">{item.char}</span>
+                <span className="text-slate-300 text-xs">➔</span>
+                <span className="text-sm sm:text-base text-slate-600 font-medium">{item.homophones.join(', ')}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 詞彙卡片主網格 */}
+        <div className={`grid ${currentSubject === 'english' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'} gap-3 sm:gap-6`}>
+          {currentVocabulary.length > 0 ? currentVocabulary.map((item, index) => {
+            const isPracticeActiveCard = practiceMode.isActive && practiceMode.words[practiceMode.currentIndex]?.word === item.word;
+            const isPlaying = activeWord === item.word;
+            const isRevealed = practiceMode.revealedWords.includes(item.word);
+            const isHidden = practiceMode.isActive && practiceMode.isDictation && !isRevealed;
+            const isDictationRevealPhase = isPracticeActiveCard && practiceMode.isDictation && isRevealed;
+            const sepConfig = getSeparatorConfig(currentChapter, index);
+            
+            return (
+              <React.Fragment key={item.word}>
+                {sepConfig && <SectionSeparator {...sepConfig} />}
+                <WordCard 
+                  item={item} 
+                  index={index} 
+                  t={t}
+                  isPlaying={isPlaying} 
+                  isPracticeActiveCard={isPracticeActiveCard} 
+                  practiceCountdown={practiceMode.countdown} 
+                  language={language} 
+                  currentSubject={currentSubject} 
+                  onPronounce={stableOnPronounce} 
+                  isHidden={isHidden} 
+                  isDictationRevealPhase={isDictationRevealPhase} 
+                  isSelected={selectedCardIndices.includes(index)} 
+                  onToggleSelect={toggleCardSelection} 
+                />
+              </React.Fragment>
+            );
+          }) : (
+            <div className="col-span-full py-16 text-center text-slate-400 font-medium border-2 border-dashed border-slate-200 rounded-3xl">
+              {t.emptyVocabulary}
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* 章節練習 Modal */}
+      {isChapterPracticeOpen && PRACTICE_DB[currentChapter] && (() => {
+        const practiceList = Array.isArray(PRACTICE_DB[currentChapter]) ? PRACTICE_DB[currentChapter] : [PRACTICE_DB[currentChapter]];
+        const practiceData = practiceList[activePracticeTab] || practiceList[0];
+
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in" onClick={() => setIsChapterPracticeOpen(false)}>
+             <div role="dialog" aria-modal="true" aria-labelledby="chapter-practice-title" tabIndex={-1} className="bg-white rounded-[2rem] p-6 md:p-8 w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl relative animate-in zoom-in-95" onClick={e=>e.stopPropagation()}>
+               <button onClick={() => setIsChapterPracticeOpen(false)} aria-label={t.close} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full z-10"><X size={28} aria-hidden="true" /></button>
+               <h2 id="chapter-practice-title" className="text-2xl sm:text-3xl font-bold text-slate-800 mb-2 flex items-center gap-3 flex-shrink-0"><PenTool className="text-teal-500" aria-hidden="true" size={32} /> {t.chapterPractice || '章節練習'}</h2>
+               
+               {practiceList.length > 1 && (
+                 <div className="flex gap-2 overflow-x-auto pb-3 mb-4 hide-scrollbar border-b border-slate-100 flex-shrink-0">
+                    {practiceList.map((p, idx) => (
+                      <button key={idx} onClick={() => { setActivePracticeTab(idx); setPracticeInputs({}); setShowPracticeAnswers(false); setIndividualReveals({}); }} aria-pressed={activePracticeTab === idx} className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-bold transition-all shadow-sm border ${activePracticeTab === idx ? 'bg-teal-500 text-white border-teal-500' : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:text-teal-600 hover:border-teal-300'}`}>
+                        {p.title}
+                      </button>
+                    ))}
+                 </div>
+               )}
+               <p className="text-slate-500 font-medium text-sm sm:text-base mb-6 flex-shrink-0 border-b border-slate-100 pb-4">{practiceData.desc}</p>
+               
+               <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                 {/* 概念圖類型題目 */}
+                 {practiceData.type === 'concept_map' && (
+                   <div className="flex flex-col gap-4 bg-slate-50 p-4 rounded-xl">
+                      <div className="bg-indigo-100 text-indigo-800 p-3 sm:p-4 rounded-xl text-center font-bold shadow-sm text-sm sm:text-base">{practiceData.topTexts[0]}</div>
+                      <div className="bg-indigo-100 text-indigo-800 p-3 sm:p-4 rounded-xl text-center font-bold shadow-sm mx-4 text-sm sm:text-base">{practiceData.topTexts[1]}</div>
+                      <div className="flex flex-col gap-4 pl-4 border-l-[3px] sm:border-l-4 border-indigo-200 ml-4 relative mt-2 mb-2">
+                         {practiceData.items.map((item, idx) => (
+                            <div key={idx} className="bg-white border-2 border-slate-200 rounded-xl p-4 sm:p-5 shadow-sm relative">
+                               <div className="absolute -left-[18px] sm:-left-[21px] top-1/2 w-4 sm:w-5 h-[3px] sm:h-1 bg-indigo-200"></div>
+                                <button 
+                                  onClick={(e) => {
+                                    const getBlankText = (id, ans) => { if (!ans) return ''; return (showPracticeAnswers || (individualReveals && individualReveals[id])) ? ans : (practiceInputs[id] ? practiceInputs[id] : '空格'); };
+                                    const fullText = `${item.nameLabel.pre||''}${getBlankText(`name-${activePracticeTab}-${idx}`, item.nameLabel.blank)}${item.nameLabel.post || ''}。` + item.features.map((f, fIdx) => `${f.pre||''}${getBlankText(`f-${activePracticeTab}-${idx}-${fIdx}`, f.blank)}${f.post||''}`).join('')+item.uses.map((u,uIdx)=>`${u.pre || ''}${getBlankText(`u-${activePracticeTab}-${idx}-${uIdx}`, u.blank)}${u.post || ''}`).join('');
+                                    handlePronounce({ word: 'practice_item' }, true, fullText.replace(/_+/g, '空格'), e);
+                                  }}
+                                  className="absolute top-2 right-2 sm:top-3 sm:right-3 p-1.5 sm:p-2 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full transition-colors z-10" aria-label={t.readAloud}>
+                                  <Volume2 size={16} aria-hidden="true" className="sm:w-5 sm:h-5" />
+                                </button>
+                               <div className="flex flex-col md:flex-row gap-4 pr-8 sm:pr-10">
+                                  <div className="md:w-1/3 flex items-center justify-center font-bold text-lg sm:text-xl text-slate-700 bg-slate-50 rounded-xl p-3 border-2 border-slate-100 whitespace-nowrap overflow-hidden">
+                                     {item.nameLabel.pre}
+                                      {item.nameLabel.blank !== null && (<BlankInput id={`name-${activePracticeTab}-${idx}`} answer={item.nameLabel.blank} value={practiceInputs[`name-${activePracticeTab}-${idx}`]} onChange={(id, val) => setPracticeInputs(p => ({...p, [id]: val}))} showAnswer={showPracticeAnswers} individualReveals={individualReveals} onToggleReveal={toggleReveal} hintLabel={t.showHint} />)}
+                                     {item.nameLabel.post}
+                                  </div>
+                                  <div className="md:w-2/3 flex flex-col gap-3 justify-center text-slate-600 text-sm sm:text-base">
+                                     <div className="leading-loose flex flex-wrap items-center">
+                                       {item.features.map((f, fIdx) => (
+                                         <React.Fragment key={fIdx}>
+                                           <span className="font-semibold text-indigo-600/80 mr-1">{fIdx === 0 ? '特點：' : ''}</span>
+                                           {f.pre.replace('特點：', '')}
+                                            {f.blank !== null && <BlankInput id={`f-${activePracticeTab}-${idx}-${fIdx}`} answer={f.blank} value={practiceInputs[`f-${activePracticeTab}-${idx}-${fIdx}`]} onChange={(id, val) => setPracticeInputs(p => ({...p, [id]: val}))} showAnswer={showPracticeAnswers} individualReveals={individualReveals} onToggleReveal={toggleReveal} hintLabel={t.showHint} />}
+                                           {f.post}
+                                         </React.Fragment>
+                                       ))}
+                                     </div>
+                                     <div className="leading-loose border-t border-slate-100 pt-3 flex flex-wrap items-center mt-1">
+                                       {item.uses.map((u, uIdx) => (
+                                         <React.Fragment key={uIdx}>
+                                           <span className="font-semibold text-pink-600/80 mr-1">{uIdx === 0 ? '用途：' : ''}</span>
+                                           {u.pre.replace('用途：', '')}
+                                            {u.blank !== null && <BlankInput id={`u-${activePracticeTab}-${idx}-${uIdx}`} answer={u.blank} value={practiceInputs[`u-${activePracticeTab}-${idx}-${uIdx}`]} onChange={(id, val) => setPracticeInputs(p => ({...p, [id]: val}))} showAnswer={showPracticeAnswers} individualReveals={individualReveals} onToggleReveal={toggleReveal} hintLabel={t.showHint} />}
+                                           {u.post}
+                                         </React.Fragment>
+                                       ))}
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         ))}
+                      </div>
+                      <div className="bg-indigo-100 text-indigo-800 p-3 sm:p-4 rounded-xl text-center font-bold shadow-sm mt-2 text-sm sm:text-base">{practiceData.bottomText}</div>
+                   </div>
+                 )}
+
+                 {/* 綜合問答題型 */}
+                 {practiceData.type === 'mixed_qa' && (
+                   <div className="flex flex-col gap-6">
+                     {practiceData.sections.map((sec, sIdx) => (
+                       <div key={sIdx} className="bg-slate-50 p-4 sm:p-6 rounded-xl border border-slate-100">
+                         <h4 className="text-lg font-bold text-indigo-700 mb-4 flex items-center gap-2"><Sparkles size={20} className="text-amber-500" /> {sec.sectionTitle}</h4>
+                         
+                         {sec.questions && sec.questions.length > 0 && (
+                           <div className="space-y-4">
+                             {sec.questions.map((qItem, qIdx) => {
+                               const isRevealed = showPracticeAnswers || individualReveals[`qa-${activePracticeTab}-${sIdx}-${qIdx}`];
+                               return (
+                                 <div key={qIdx} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative group">
+                                   <div className="absolute top-3 right-3 flex gap-2 z-10">
+                                     {!showPracticeAnswers && (
+                                       <button 
+                                         onClick={(e) => { e.preventDefault(); toggleReveal(`qa-${activePracticeTab}-${sIdx}-${qIdx}`); }} 
+                                         className={`p-1.5 sm:p-2 transition-all outline-none rounded-full ${individualReveals[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] ? 'text-emerald-500 bg-emerald-50' : 'text-slate-400 bg-slate-50 hover:text-amber-500 hover:bg-amber-50 opacity-70 hover:opacity-100'}`} 
+                                         aria-label={t.showHint}>
+                                         <HelpCircle size={16} className="sm:w-5 sm:h-5" />
+                                       </button>
+                                     )}
+                                     <button 
+                                       onClick={(e) => { const cleanQ = qItem.q.replace(/_+/g, '空格'); const textToRead = `${cleanQ}。${isRevealed ? qItem.ans : (practiceInputs[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] || '')}`; handlePronounce({ word: 'qa_item' }, true, textToRead, e); }} 
+                                       className="p-1.5 sm:p-2 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full transition-colors" 
+                                       aria-label={t.readAloud}>
+                                       <Volume2 size={16} className="sm:w-5 sm:h-5" />
+                                     </button>
+                                   </div>
+                                   <div className="font-bold text-slate-700 mb-2 pr-20 whitespace-pre-wrap">{qItem.q}</div>
+                                   
+                                   {qItem.options ? (
+                                     <div className="flex flex-col gap-2 mt-3">
+                                       {(shuffledOptions[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] || qItem.options).map((opt, oIdx) => {
+                                         const isSelected = practiceInputs[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] === opt;
+                                         const isCorrect = opt === qItem.ans;
+                                         const showValidation = isSelected && !isRevealed;
+                                         let btnClass = 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300';
+                                         if (isRevealed && isCorrect) { btnClass = 'ring-2 ring-emerald-400 ring-offset-1 border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm'; } 
+                                         else if (showValidation) { if (isCorrect) { btnClass = 'bg-emerald-500 border-emerald-600 text-white shadow-md'; } else { btnClass = 'bg-rose-50 border-rose-400 text-rose-700 shadow-sm'; } }
+                                         return (
+                                           <div key={oIdx} className="flex gap-2 items-center">
+                                             <button onClick={() => !isRevealed && setPracticeInputs(p => ({...p, [`qa-${activePracticeTab}-${sIdx}-${qIdx}`]: opt}))} className={`flex-1 px-4 py-3 rounded-xl font-bold border-2 transition-all text-left flex items-start gap-2 leading-relaxed ${btnClass}`}>
+                                               <span className="flex-shrink-0 mt-0.5">{String.fromCharCode(65 + oIdx)}.</span><span className="flex-1">{opt}</span>
+                                               {showValidation && isCorrect && <CheckCircle size={20} className="text-white flex-shrink-0 mt-0.5" />}
+                                               {showValidation && !isCorrect && <X size={20} className="text-rose-500 flex-shrink-0 mt-0.5" />}
+                                             </button>
+                                             <button onClick={(e) => { e.stopPropagation(); handlePronounce({ word: 'opt' }, true, opt, e); }} className="p-2 sm:p-3 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors flex-shrink-0" aria-label={t.readAloud}>
+                                               <Volume2 size={18} />
+                                             </button>
+                                           </div>
+                                         );
+                                       })}
+                                       {practiceInputs[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] && !isRevealed && (
+                                         <div className={`mt-2 p-3 rounded-lg text-sm font-bold animate-in fade-in flex items-center gap-2 ${practiceInputs[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] === qItem.ans ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200'}`}>
+                                           {practiceInputs[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] === qItem.ans ? <><CheckCircle size={18} /> {t.correct}</> : <><AlertCircle size={18} /> {t.incorrect}</>}
+                                         </div>
+                                       )}
+                                     </div>
+                                   ) : (
+                                     <textarea 
+                                       className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 outline-none focus:border-indigo-400 transition-colors" 
+                                       rows="2" placeholder={t.answerPlaceholder} aria-label={t.answerPlaceholder} value={practiceInputs[`qa-${activePracticeTab}-${sIdx}-${qIdx}`] || ''} 
+                                       onChange={(e) => setPracticeInputs(p => ({...p, [`qa-${activePracticeTab}-${sIdx}-${qIdx}`]: e.target.value}))} disabled={isRevealed} 
+                                     />
+                                   )}
+                                   {isRevealed && !qItem.options && (
+                                     <div className="mt-3 p-3 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium border border-emerald-100 animate-in fade-in flex items-center justify-between gap-3">
+                                       <span><span aria-hidden="true">💡</span> {t.suggestedAnswer}：{qItem.ans}</span>
+                                       <button onClick={(e) => { e.stopPropagation(); handlePronounce({ word: 'ans' }, true, qItem.ans, e); }} className="p-1.5 sm:p-2 text-emerald-500 hover:text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-full transition-colors flex-shrink-0" aria-label={t.readAloud}>
+                                         <Volume2 size={16} />
+                                       </button>
+                                     </div>
+                                   )}
+                                 </div>
+                               );
+                             })}
+                           </div>
+                         )}
+
+                         {/* 純文字說明區塊 */}
+                         {sec.instruction && !sec.options && sec.questions && sec.questions.length === 0 && (
+                            <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative group mb-4">
+                                <div className="absolute top-3 right-3 flex gap-2 z-10">
+                                  <button onClick={(e) => { handlePronounce({ word: 'instruction' }, true, sec.instruction, e); }} className="p-1.5 sm:p-2 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full transition-colors" aria-label={t.readAloud}>
+                                    <Volume2 size={16} className="sm:w-5 sm:h-5" />
+                                  </button>
+                                </div>
+                                <div className="font-bold text-slate-700 mb-3 pr-20 whitespace-pre-wrap leading-loose text-lg">{sec.instruction}</div>
+                            </div>
+                         )}
+
+                         {/* 複選題區塊 */}
+                         {sec.options && (() => {
+                           const isRevealed = showPracticeAnswers || individualReveals[`mc-${activePracticeTab}-${sIdx}`];
+                           const currentOptions = shuffledOptions[`mc-${activePracticeTab}-${sIdx}`] || sec.options;
+                           return (
+                             <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm mt-4 relative group">
+                                <div className="absolute top-3 right-3 flex gap-2 z-10">
+                                  {!showPracticeAnswers && (
+                                    <button onClick={(e) => { e.preventDefault(); toggleReveal(`mc-${activePracticeTab}-${sIdx}`); }} className={`p-1.5 sm:p-2 transition-all outline-none rounded-full ${individualReveals[`mc-${activePracticeTab}-${sIdx}`] ? 'text-emerald-500 bg-emerald-50' : 'text-slate-400 bg-slate-50 hover:text-amber-500 hover:bg-amber-50 opacity-70 hover:opacity-100'}`} aria-label={t.showHint}>
+                                      <HelpCircle size={16} className="sm:w-5 sm:h-5" />
+                                    </button>
+                                  )}
+                                  <button onClick={(e) => { const cleanInstruction = sec.instruction ? sec.instruction.replace(/_+/g, '空格') : ''; const textToRead = `${cleanInstruction}。選項有：${currentOptions.join('。')}。` + (isRevealed ? `答案是：${sec.suggestedOptions.join('。')}` : ''); handlePronounce({ word: 'mc_item' }, true, textToRead, e); }} className="p-1.5 sm:p-2 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full transition-colors" aria-label={t.readAloud}>
+                                    <Volume2 size={16} className="sm:w-5 sm:h-5" />
+                                  </button>
+                                </div>
+                                {sec.instruction && <div className="font-bold text-slate-700 mb-3 pr-20 whitespace-pre-wrap">{sec.instruction}</div>}
+                                <div className="flex flex-wrap gap-3 mb-4">
+                                  {currentOptions.map((opt, oIdx) => {
+                                    const isSelected = practiceInputs[`opt-${activePracticeTab}-${sIdx}-${oIdx}`]; const isSuggested = sec.suggestedOptions.includes(opt);
+                                    let btnClass = 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300';
+                                    if (isRevealed && isSuggested) { btnClass = 'ring-2 ring-emerald-400 ring-offset-2 border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm'; } 
+                                    else if (isSelected && !isRevealed) { if (isSuggested) { btnClass = 'bg-emerald-500 border-emerald-600 text-white shadow-md'; } else { btnClass = 'bg-rose-50 border-rose-400 text-rose-700 shadow-sm'; } }
+                                    return (
+                                      <div key={oIdx} className="flex items-center gap-1.5">
+                                        <button onClick={() => !isRevealed && setPracticeInputs(p => ({...p, [`opt-${activePracticeTab}-${sIdx}-${oIdx}`]: !isSelected}))} className={`px-4 py-2 rounded-full font-bold border-2 transition-all flex items-center gap-2 ${btnClass}`}>
+                                          {opt}
+                                          {isSelected && !isRevealed && isSuggested && <CheckCircle size={16} className="text-white" />}
+                                          {isSelected && !isRevealed && !isSuggested && <X size={16} className="text-rose-500" />}
+                                        </button>
+                                        <button onClick={(e) => { e.stopPropagation(); handlePronounce({ word: 'opt' }, true, opt, e); }} className="p-1.5 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full transition-colors flex-shrink-0" aria-label={t.readAloud}>
+                                          <Volume2 size={14} />
+                                        </button>
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                                {isRevealed && (
+                                  <div className="mb-4 p-3 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium border border-emerald-100 animate-in fade-in flex items-center justify-between gap-3">
+                                    <span><span aria-hidden="true">💡</span> {t.suggestedAnswer}：{sec.suggestedOptions.join('、')}</span>
+                                    <button onClick={(e) => { e.stopPropagation(); handlePronounce({ word: 'ans' }, true, sec.suggestedOptions.join('、'), e); }} className="p-1.5 sm:p-2 text-emerald-500 hover:text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-full transition-colors flex-shrink-0" aria-label={t.readAloud}>
+                                      <Volume2 size={16} />
+                                    </button>
+                                  </div>
+                                )}
+                                
+                                {/* 造句題附加區塊 */}
+                                {sec.sentenceMaking && (() => {
+                                  const isSmRevealed = showPracticeAnswers || individualReveals[`sm-${activePracticeTab}-${sIdx}`];
+                                  return (
+                                    <div className="mt-6 border-t border-slate-100 pt-4 relative group">
+                                      <div className="absolute top-4 right-0 flex gap-2 z-10">
+                                        {!showPracticeAnswers && (
+                                          <button onClick={(e) => { e.preventDefault(); toggleReveal(`sm-${activePracticeTab}-${sIdx}`); }} className={`p-1.5 sm:p-2 transition-all outline-none rounded-full ${individualReveals[`sm-${activePracticeTab}-${sIdx}`] ? 'text-emerald-500 bg-emerald-50' : 'text-slate-400 bg-slate-50 hover:text-amber-500 hover:bg-amber-50 opacity-70 hover:opacity-100'}`} aria-label={t.showHint}>
+                                            <HelpCircle size={16} className="sm:w-5 sm:h-5" />
+                                          </button>
+                                        )}
+                                        <button onClick={(e) => { const cleanSmQ = sec.sentenceMaking.q.replace(/_+/g, '空格'); const textToRead = `${cleanSmQ}。${isSmRevealed ? sec.sentenceMaking.ans : (practiceInputs[`sm-${activePracticeTab}-${sIdx}`] || '')}`; handlePronounce({ word: 'sm_item' }, true, textToRead, e); }} className="p-1.5 sm:p-2 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-full transition-colors" aria-label={t.readAloud}>
+                                          <Volume2 size={16} className="sm:w-5 sm:h-5" />
+                                        </button>
+                                      </div>
+                                      <div className="font-bold text-slate-700 mb-2 pr-20 whitespace-pre-wrap">{sec.sentenceMaking.q}</div>
+                                      {sec.sentenceMaking.options ? (
+                                        <div className="flex flex-col gap-2 mt-3">
+                                          {(shuffledOptions[`sm-${activePracticeTab}-${sIdx}`] || sec.sentenceMaking.options).map((opt, oIdx) => {
+                                            const isSelected = practiceInputs[`sm-${activePracticeTab}-${sIdx}`] === opt; const isCorrect = opt === sec.sentenceMaking.ans; const showValidation = isSelected && !isSmRevealed;
+                                            let btnClass = 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300';
+                                            if (isSmRevealed && isCorrect) { btnClass = 'ring-2 ring-emerald-400 ring-offset-1 border-emerald-500 bg-emerald-50 text-emerald-700 shadow-sm'; } 
+                                            else if (showValidation) { if (isCorrect) { btnClass = 'bg-emerald-500 border-emerald-600 text-white shadow-md'; } else { btnClass = 'bg-rose-50 border-rose-400 text-rose-700 shadow-sm'; } }
+                                            return (
+                                              <div key={oIdx} className="flex gap-2 items-center">
+                                                <button onClick={() => !isSmRevealed && setPracticeInputs(p => ({...p, [`sm-${activePracticeTab}-${sIdx}`]: opt}))} className={`flex-1 px-4 py-3 rounded-xl font-bold border-2 transition-all text-left flex items-start gap-2 leading-relaxed ${btnClass}`}>
+                                                  <span className="flex-shrink-0 mt-0.5">{String.fromCharCode(65 + oIdx)}.</span><span className="flex-1">{opt}</span>
+                                                  {showValidation && isCorrect && <CheckCircle size={20} className="text-white flex-shrink-0 mt-0.5" />}
+                                                  {showValidation && !isCorrect && <X size={20} className="text-rose-500 flex-shrink-0 mt-0.5" />}
+                                                </button>
+                                                <button onClick={(e) => { e.stopPropagation(); handlePronounce({ word: 'opt' }, true, opt, e); }} className="p-2 sm:p-3 text-indigo-400 hover:text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-colors flex-shrink-0" aria-label={t.readAloud}>
+                                                  <Volume2 size={18} />
+                                                </button>
+                                              </div>
+                                            );
+                                          })}
+                                          {practiceInputs[`sm-${activePracticeTab}-${sIdx}`] && !isSmRevealed && (
+                                            <div className={`mt-2 p-3 rounded-lg text-sm font-bold animate-in fade-in flex items-center gap-2 ${practiceInputs[`sm-${activePracticeTab}-${sIdx}`] === sec.sentenceMaking.ans ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200'}`}>
+                                              {practiceInputs[`sm-${activePracticeTab}-${sIdx}`] === sec.sentenceMaking.ans ? <><CheckCircle size={18} /> {t.correct}</> : <><AlertCircle size={18} /> {t.incorrect}</>}
+                                            </div>
+                                          )}
+                                        </div>
+                                      ) : (
+                                        <textarea className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 outline-none focus:border-indigo-400 transition-colors" rows="2" placeholder={t.sentencePlaceholder} aria-label={t.sentencePlaceholder} value={practiceInputs[`sm-${activePracticeTab}-${sIdx}`] || ''} onChange={(e) => setPracticeInputs(p => ({...p, [`sm-${activePracticeTab}-${sIdx}`]: e.target.value}))} disabled={isSmRevealed} />
+                                      )}
+                                      {isSmRevealed && !sec.sentenceMaking.options && (
+                                        <div className="mt-3 p-3 bg-emerald-50 text-emerald-700 rounded-lg text-sm font-medium border border-emerald-100 animate-in fade-in flex items-center justify-between gap-3">
+                                          <span><span aria-hidden="true">💡</span> {t.suggestedAnswer}：{sec.sentenceMaking.ans}</span>
+                                          <button onClick={(e) => { e.stopPropagation(); handlePronounce({ word: 'ans' }, true, sec.sentenceMaking.ans, e); }} className="p-1.5 sm:p-2 text-emerald-500 hover:text-emerald-700 bg-emerald-100 hover:bg-emerald-200 rounded-full transition-colors flex-shrink-0" aria-label={t.readAloud}>
+                                            <Volume2 size={16} />
+                                          </button>
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })()}
+                             </div>
+                           );
+                         })()}
+                       </div>
+                     ))}
+                   </div>
+                 )}
+               </div>
+
+               {/* 練習控制按鈕 */}
+               <div className="flex flex-col sm:flex-row gap-3 mt-6 pt-6 border-t border-slate-100 flex-shrink-0">
+                  <button onClick={() => setShowPracticeAnswers(!showPracticeAnswers)} className={`flex-1 py-3 rounded-xl font-bold text-base transition-all shadow-sm flex items-center justify-center gap-2 ${showPracticeAnswers ? 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200' : 'bg-indigo-500 text-white hover:bg-indigo-600 hover:scale-[1.02]'}`}>
+                    {showPracticeAnswers ? (t.hideSuggestedAnswers || '隱藏建議答案') : (t.showSuggestedAnswers || '顯示建議答案')}
+                  </button>
+                  <button onClick={() => { setPracticeInputs({}); setShowPracticeAnswers(false); setIndividualReveals({}); }} className="flex-1 py-3 rounded-xl font-bold text-base transition-all shadow-sm flex items-center justify-center gap-2 bg-slate-100 text-slate-600 hover:bg-slate-200">
+                    {t.clearAnswers || '清除作答'}
+                  </button>
+               </div>
+             </div>
+          </div>
+        );
+      })()}
+
+      {/* 單字抽查設定 Modal */}
+      {isPracticeModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in" onClick={() => setIsPracticeModalOpen(false)}>
+           <div role="dialog" aria-modal="true" aria-labelledby="practice-setup-title" tabIndex={-1} className="bg-white rounded-[2rem] p-6 md:p-8 w-full max-w-2xl shadow-2xl relative animate-in zoom-in-95" onClick={e=>e.stopPropagation()}>
+             <button onClick={() => setIsPracticeModalOpen(false)} aria-label={t.close} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full"><X size={24} aria-hidden="true" /></button>
+             <h2 id="practice-setup-title" className="text-xl sm:text-2xl font-bold text-slate-800 mb-5 flex items-center gap-2"><Timer className="text-amber-500" aria-hidden="true" size={26} /> {t.practiceSetup}</h2>
+             
+             <div className="mb-6">
+                 <label className="block text-sm sm:text-base font-bold text-slate-500 mb-2 pl-1">{t.practiceTypeLabel}</label>
+                 <div role="group" aria-label={t.practiceTypeLabel} className="flex bg-slate-100 p-1.5 rounded-xl">
+                   <button onClick={() => setPracticeType('standard')} aria-pressed={practiceType === 'standard'} className={`flex-1 py-2 sm:py-2.5 text-base sm:text-lg font-bold rounded-lg transition-all ${practiceType === 'standard' ? 'bg-white shadow-md text-amber-600' : 'text-slate-500 hover:text-slate-700'}`}>{t.practiceModeStandard}</button>
+                   <button onClick={() => setPracticeType('dictation')} aria-pressed={practiceType === 'dictation'} className={`flex-1 py-2 sm:py-2.5 text-base sm:text-lg font-bold rounded-lg transition-all ${practiceType === 'dictation' ? 'bg-white shadow-md text-amber-600' : 'text-slate-500 hover:text-slate-700'}`}>{t.practiceModeDictation}</button>
+                 </div>
+             </div>
+             
+             {selectedCardIndices.length > 0 ? (
+               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 bg-emerald-50 p-4 rounded-2xl border border-emerald-200 shadow-inner">
+                 <span className="text-emerald-700 font-bold text-sm sm:text-base whitespace-nowrap flex items-center gap-2"><CheckCircle size={20} className="text-emerald-500" /> {t.selectedCardsLabel ? t.selectedCardsLabel.replace('{count}', selectedCardIndices.length) : `已選取 ${selectedCardIndices.length} 個單字`}</span>
+                 <button onClick={() => setSelectedCardIndices([])} className="text-sm font-bold text-emerald-600 bg-white px-3 py-1.5 rounded-lg shadow-sm border border-emerald-100 hover:bg-emerald-100 hover:text-emerald-800 transition-colors">{t.clearSelection || '清除選取'}</button>
+               </div>
+             ) : (
+               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                 <span className="text-slate-600 font-medium text-sm sm:text-base whitespace-nowrap">{t.practiceRange}</span>
+                 <div className="flex items-center gap-2 sm:gap-3">
+                   <span className="text-xs sm:text-sm font-bold text-slate-500">{t.from}</span>
+                   <div className="relative">
+                      <select aria-label={`${t.practiceRange} ${t.from}`} value={practiceRangeStart} onChange={e => { const val = Number(e.target.value); setPracticeRangeStart(val); if (val > practiceRangeEnd) setPracticeRangeEnd(val); }} className="w-16 sm:w-20 p-2 pl-3 pr-6 rounded-xl border-2 border-slate-200 bg-white text-slate-700 font-bold text-base sm:text-lg focus:border-amber-400 outline-none appearance-none cursor-pointer">{currentVocabulary.map((_, i) => (<option key={i} value={i + 1}>{i + 1}</option>))}</select>
+                      <ChevronDown size={16} aria-hidden="true" className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                   </div>
+                   <span className="text-slate-300 font-bold mx-1">-</span>
+                   <span className="text-xs sm:text-sm font-bold text-slate-500">{t.to}</span>
+                   <div className="relative">
+                      <select aria-label={`${t.practiceRange} ${t.to}`} value={practiceRangeEnd} onChange={e => setPracticeRangeEnd(Number(e.target.value))} className="w-16 sm:w-20 p-2 pl-3 pr-6 rounded-xl border-2 border-slate-200 bg-white text-slate-700 font-bold text-base sm:text-lg focus:border-amber-400 outline-none appearance-none cursor-pointer">{currentVocabulary.map((_, i) => (<option key={i} value={i + 1} disabled={i + 1 < practiceRangeStart}>{i + 1}</option>))}</select>
+                      <ChevronDown size={16} aria-hidden="true" className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+                   </div>
+                 </div>
+               </div>
+             )}
+             
+             <div className="mb-6">
+                 <label className="block text-sm sm:text-base font-bold text-slate-500 mb-2 pl-1">{t.orderLabel}</label>
+                  <div role="group" aria-label={t.orderLabel} className="flex bg-slate-100 p-1.5 rounded-xl">
+                    <button onClick={() => setPracticeOrder('random')} aria-pressed={practiceOrder === 'random'} className={`flex-1 py-2 sm:py-2.5 text-base sm:text-lg font-bold rounded-lg transition-all ${practiceOrder === 'random' ? 'bg-white shadow-md text-amber-600' : 'text-slate-500 hover:text-slate-700'}`}>{t.orderRandom}</button>
+                    <button onClick={() => setPracticeOrder('sequence')} aria-pressed={practiceOrder === 'sequence'} className={`flex-1 py-2 sm:py-2.5 text-base sm:text-lg font-bold rounded-lg transition-all ${practiceOrder === 'sequence' ? 'bg-white shadow-md text-amber-600' : 'text-slate-500 hover:text-slate-700'}`}>{t.orderSequence}</button>
+                  </div>
+             </div>
+             
+             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8">
+               <div>
+                  <div className="flex justify-between items-center mb-2 pl-1 pr-1"><label className="text-xs sm:text-sm font-bold text-slate-500">{t.waitTimeLabel}</label><span className="text-sm sm:text-base font-black text-amber-500">{practiceWaitTime}s</span></div>
+                  <div className="flex items-center gap-2 mt-1"><button aria-label={`${t.waitTimeLabel} - 1`} onClick={() => setPracticeWaitTime(p => Math.max(1, p - 1))} className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors shadow-sm"><Minus size={16} aria-hidden="true" /></button><input aria-label={t.waitTimeLabel} aria-valuetext={`${practiceWaitTime}s`} type="range" min="1" max="45" step="1" value={practiceWaitTime} onChange={e => setPracticeWaitTime(Number(e.target.value))} className="w-full h-2 accent-amber-500 cursor-pointer" /><button aria-label={`${t.waitTimeLabel} + 1`} onClick={() => setPracticeWaitTime(p => Math.min(45, p + 1))} className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors shadow-sm"><Plus size={16} aria-hidden="true" /></button></div>
+               </div>
+               <div>
+                  <div className="flex justify-between items-center mb-2 pl-1 pr-1"><label className="text-xs sm:text-sm font-bold text-slate-500">{t.repeatLabel}</label><span className="text-sm sm:text-base font-black text-amber-500">{practiceRepeatTimes} {t.timesUnit}</span></div>
+                  <div className="flex items-center gap-2 mt-1"><button aria-label={`${t.repeatLabel} - 1`} onClick={() => setPracticeRepeatTimes(p => Math.max(1, p - 1))} className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors shadow-sm"><Minus size={16} aria-hidden="true" /></button><input aria-label={t.repeatLabel} aria-valuetext={`${practiceRepeatTimes} ${t.timesUnit}`} type="range" min="1" max="5" step="1" value={practiceRepeatTimes} onChange={e => setPracticeRepeatTimes(Number(e.target.value))} className="w-full h-2 accent-amber-500 cursor-pointer" /><button aria-label={`${t.repeatLabel} + 1`} onClick={() => setPracticeRepeatTimes(p => Math.min(5, p + 1))} className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors shadow-sm"><Plus size={16} aria-hidden="true" /></button></div>
+               </div>
+               <div>
+                  <div className="flex justify-between items-center mb-2 pl-1 pr-1"><label className="text-xs sm:text-sm font-bold text-slate-500">{t.roundsLabel}</label><span className="text-sm sm:text-base font-black text-amber-500">{practiceSessionRounds} {t.roundsUnit}</span></div>
+                  <div className="flex items-center gap-2 mt-1"><button aria-label={`${t.roundsLabel} - 1`} onClick={() => setPracticeSessionRounds(p => Math.max(1, p - 1))} className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors shadow-sm"><Minus size={16} aria-hidden="true" /></button><input aria-label={t.roundsLabel} aria-valuetext={`${practiceSessionRounds} ${t.roundsUnit}`} type="range" min="1" max="10" step="1" value={practiceSessionRounds} onChange={e => setPracticeSessionRounds(Number(e.target.value))} className="w-full h-2 accent-amber-500 cursor-pointer" /><button aria-label={`${t.roundsLabel} + 1`} onClick={() => setPracticeSessionRounds(p => Math.min(10, p + 1))} className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0 flex items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors shadow-sm"><Plus size={16} aria-hidden="true" /></button></div>
+               </div>
+             </div>
+             
+             <button onClick={() => startPractice(practiceRangeStart, practiceRangeEnd)} className="w-full py-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-lg sm:text-xl shadow-md transition-all hover:scale-[1.02] flex justify-center items-center gap-2">
+                <Play size={24} aria-hidden="true" className="fill-current" /> {t.startPractice}
+             </button>
+           </div>
+        </div>
+      )}
+
+      {/* 抽查模式浮動控制列 */}
+      {practiceMode.isActive && (
+        <div role="region" aria-label={t.practiceMode} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 backdrop-blur-md text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-5 animate-in slide-in-from-bottom-10 border border-slate-700/50">
+           <span className="flex items-center gap-2 font-bold text-sm sm:text-base"><Timer size={20} aria-hidden="true" className="text-amber-400 animate-pulse" /> {t.practiceMode} {practiceMode.totalRounds > 1 ? `(${practiceMode.currentRound}/${practiceMode.totalRounds})` : ''} : {practiceMode.currentIndex + 1} / {practiceMode.words.length}</span>
+           <div aria-hidden="true" className="w-px h-6 bg-slate-600"></div>
+           <button onClick={stopPractice} className="text-rose-400 hover:text-rose-300 flex items-center gap-1.5 text-sm sm:text-base font-bold transition-colors"><StopCircle size={18} aria-hidden="true" /> {t.stopPractice}</button>
+        </div>
+      )}
+
+      {/* 課文朗讀模式浮動控制列 */}
+      {isChapterReadingActive && (
+        <div role="region" aria-label={t.readChapter} className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900/90 backdrop-blur-md text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-4 sm:gap-5 animate-in slide-in-from-bottom-10 border border-slate-700/50">
+           <span className="flex items-center gap-2 font-bold text-sm sm:text-base whitespace-nowrap"><Volume2 size={20} aria-hidden="true" className="text-amber-400 animate-pulse" /> {t.readChapter || '課文朗讀'} {chapterRepeatTimes > 1 ? `(${currentReadingRound} / ${chapterRepeatTimes})` : ''}</span>
+           <div aria-hidden="true" className="w-px h-6 bg-slate-600"></div>
+           <button onClick={handlePauseToggle} className="text-amber-400 hover:text-amber-300 flex items-center gap-1.5 text-sm sm:text-base font-bold transition-colors whitespace-nowrap">{isPaused ? <><Play size={18} aria-hidden="true" className="fill-current" /> {t.resumeReading}</> : <><Pause size={18} aria-hidden="true" className="fill-current" /> {t.pauseReading}</>}</button>
+           <div aria-hidden="true" className="w-px h-6 bg-slate-600"></div>
+           <button onClick={stopChapterReading} className="text-rose-400 hover:text-rose-300 flex items-center gap-1.5 text-sm sm:text-base font-bold transition-colors whitespace-nowrap"><StopCircle size={18} aria-hidden="true" /> {t.stopReading || '停止'}</button>
+        </div>
+      )}
+
+      {/* 更新日誌 (Change Log) Modal */}
+      {isChangelogOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-in fade-in" onClick={() => setIsChangelogOpen(false)}>
+          <div role="dialog" aria-modal="true" aria-labelledby="changelog-title" tabIndex={-1} className="bg-white rounded-[2rem] p-6 md:p-8 w-full max-w-2xl max-h-[85vh] flex flex-col shadow-2xl relative animate-in zoom-in-95" onClick={e=>e.stopPropagation()}>
+            <button onClick={() => setIsChangelogOpen(false)} aria-label={t.close} className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full z-10"><X size={24} aria-hidden="true" /></button>
+            <div className="flex items-center justify-between mb-6 flex-shrink-0 pr-10 sm:pr-14">
+              <h2 id="changelog-title" className="text-2xl md:text-3xl font-bold text-slate-800 flex items-center gap-3"><History aria-hidden="true" className="text-indigo-500" size={28} /> <span>{t.changelog}</span></h2>
+              <button onClick={handleDownloadSource} aria-label={t.downloadData} className="flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 bg-indigo-50 text-indigo-600 hover:bg-indigo-100 rounded-full font-bold text-xs sm:text-sm transition-colors shadow-sm border border-indigo-100 active:scale-95 flex-shrink-0">
+                <Download size={16} aria-hidden="true" /> <span className="hidden sm:inline">{t.downloadData}</span>
+              </button>
+            </div>
+            
+            {/* 月份分頁 */}
+            <div className="flex gap-2 overflow-x-auto pb-3 mb-4 hide-scrollbar border-b border-slate-100 flex-shrink-0">
+              {logMonths.map(month => (
+                <button 
+                  key={month} 
+                  onClick={() => setSelectedLogMonth(month)} 
+                  aria-pressed={currentLogMonth === month}
+                  className={`px-4 py-2 rounded-full whitespace-nowrap text-sm font-bold transition-all shadow-sm border ${currentLogMonth === month ? 'bg-indigo-500 text-white border-indigo-500' : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50 hover:text-indigo-600 hover:border-indigo-300'}`}
+                >
+                  {month}
+                </button>
+              ))}
+            </div>
+            
+            {/* 日誌內容 */}
+            <div className="space-y-6 overflow-y-auto pr-2 pb-4">
+              {filteredLogs.map((log, idx) => (
+                <div key={idx} className="border-b border-slate-100 pb-6 last:border-0 last:pb-0 animate-in fade-in slide-in-from-bottom-2">
+                  <div className="flex flex-wrap items-baseline gap-3 mb-3">
+                    <span className="bg-indigo-100 text-indigo-700 font-mono font-bold px-3 py-1 rounded-full text-sm">{log.version}</span>
+                    <span className="text-slate-400 text-sm font-medium">{log.date} {log.time}</span>
+                  </div>
+                  <ul className="list-disc list-inside text-slate-600 space-y-1.5 ml-4">
+                    {log.changes.map((change, cIdx) => (
+                      <li key={cIdx} className="text-sm md:text-base leading-relaxed">{change}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+class AppErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { error };
+  }
+  componentDidCatch(error, info) {
+    console.error('App render failed', error, info);
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <div role="alert" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px', background: '#f8fafc', color: '#334155', fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif' }}>
+          <div style={{ width: 'min(560px, 100%)', padding: '32px', border: '1px solid #e2e8f0', borderRadius: '24px', background: '#fff', boxShadow: '0 24px 60px rgba(15, 23, 42, .12)' }}>
+            <h1 style={{ margin: '0 0 12px', fontSize: '24px', color: '#1e293b' }}>應用程式發生錯誤 / Something went wrong</h1>
+            <p style={{ margin: '0 0 16px', lineHeight: 1.6 }}>請重新載入頁面。 / Please reload the page.</p>
+            <details style={{ marginBottom: '16px', color: '#64748b', fontSize: '13px' }}>
+              <summary style={{ cursor: 'pointer' }}>錯誤詳情 / Error details</summary>
+              <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>{String(this.state.error?.message || this.state.error)}</pre>
+            </details>
+            <button type="button" onClick={() => window.location.reload()} style={{ padding: '10px 20px', border: 0, borderRadius: '9999px', background: '#6366f1', color: '#fff', font: 'inherit', fontWeight: 700, cursor: 'pointer' }}>重新載入 / Reload</button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+function Root() {
+  useEffect(() => {
+    window.__appMounted = true;
+    if (window.__cdnErrors && window.__cdnErrors.length) {
+      console.warn('CDN warnings:', window.__cdnErrors.join(', '));
+    }
+    const bootFallback = document.getElementById('boot-fallback');
+    if (bootFallback) bootFallback.remove();
+  }, []);
+  return <AppErrorBoundary><App /></AppErrorBoundary>;
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Root />);
+  </script>
+</body>
+</html>
